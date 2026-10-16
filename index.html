@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="PIPE 직원용 시프티 출퇴근 학습 가이드 · 내부 검토용 프로토타입">
+  <title>PIPE · 시프티 직원 가이드</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/webp" href="assets/pipe-logo.webp">
+  <script src="guide.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#guide" data-i18n="skip">단계 안내로 건너뛰기</a>
+  <header class="site-header">
+    <a class="brand" href="#clock-in/0" aria-label="PIPE 가이드 첫 단계" data-label="homeLabel"><img class="brand-logo" src="assets/pipe-logo.webp" alt="PIPE" width="1333" height="1333"><span class="brand-caption" data-i18n="brandCaption">직원 가이드</span></a>
+    <div class="language-switch" role="group" data-label="languageLabel" aria-label="가이드 언어">
+      <button type="button" id="lang-ko" lang="ko" data-lang="ko" aria-pressed="true">한국어</button>
+      <button type="button" id="lang-en" lang="en" data-lang="en" aria-pressed="false">English</button>
+    </div>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span><span data-i18n="eyebrow">시프티 · 교육용 가이드</span></p>
+      <h1 id="page-title" data-i18n="title">출퇴근, 한 번에 익혀요.</h1>
+      <p class="intro-copy" data-i18n="intro">앱 화면을 보며 하나씩 따라가세요. 필요한 안내를 고르면 지금 할 일을 알려드려요.</p>
+      <div class="training-banner"><span class="tag" data-i18n="prototype">내부 검토용</span><p data-i18n="training">교육용 화면입니다. 여기서는 출퇴근이나 요청이 전송되지 않아요. 실제 기록은 시프티 앱에서 해주세요.</p></div>
+    </section>
+
+    <div class="guide-layout">
+      <aside class="flow-sidebar" aria-labelledby="flow-heading">
+        <p class="section-index" data-i18n="indexGuide" aria-hidden="true">01 / 안내</p>
+        <h2 id="flow-heading" data-i18n="chooseFlow">무엇을 알아볼까요?</h2>
+        <nav id="flow-list" class="flow-list" data-label="flowNav" aria-label="안내 선택"></nav>
+        <a class="help-jump" href="#help"><span data-i18n="helpJump">잘 안 되나요? 상황별 도움</span><span aria-hidden="true">↗</span></a>
+        <p class="sidebar-note" data-i18n="companyNote">PIPE의 인증·휴게·승인 방식은 확인 중입니다. 화면 속 시각과 장소는 공식 예시예요.</p>
+      </aside>
+
+      <section id="guide" class="lesson" aria-labelledby="step-title">
+        <div class="lesson-top"><p id="flow-name" class="eyebrow"></p><button type="button" id="restart" class="text-button" data-i18n="restart">이 안내 처음부터</button></div>
+        <div class="progress-track" role="progressbar" id="progress" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-label="안내 진행"><span id="progress-fill"></span></div>
+        <div class="lesson-title"><span id="step-count" class="step-count"></span><h2 id="step-title" tabindex="-1"></h2></div>
+        <nav id="step-list" class="step-list" data-label="stepNav" aria-label="단계 선택"></nav>
+        <div id="request-options" class="request-options" hidden>
+          <p id="request-choice-label" data-i18n="requestChoice">어떤 상황인가요?</p>
+          <div role="group" aria-labelledby="request-choice-label"><button type="button" data-request="create"></button><button type="button" data-request="edit"></button></div>
+        </div>
+        <div class="lesson-body">
+          <figure id="screen-figure" class="screen-figure">
+            <div class="screen-stage">
+              <span class="sample-label" data-i18n="officialExample">공식 앱 예시</span>
+              <div id="screen-window" class="screen-window">
+                <img id="app-screen" alt="" decoding="async">
+                <div id="spotlight" class="spotlight" aria-hidden="true"><span id="spot-number"></span></div>
+              </div>
+              <p id="image-message" class="image-message" role="status"></p>
+            </div>
+            <figcaption><p id="image-note"></p><a id="full-image" target="_blank" rel="noopener" data-i18n="fullImage">원본 전체 이미지 보기 (새 탭)</a></figcaption>
+          </figure>
+          <div id="request-diagram" class="request-diagram" hidden>
+            <p class="eyebrow" data-i18n="diagramLabel">절차 요약 · 앱 화면이 아닙니다</p>
+            <ol id="request-timeline"></ol>
+            <p class="diagram-footnote" data-i18n="noSubmission">이 가이드에는 실제 보내기·승인 기능이 없습니다.</p>
+          </div>
+          <div class="step-copy">
+            <p class="copy-label" data-i18n="whatToDo">시프티 앱에서 할 일</p>
+            <p id="step-description" class="step-description"></p>
+            <div class="remember"><p class="copy-label" data-i18n="remember">기억해 주세요</p><p id="step-note"></p></div>
+            <div id="completion-note" class="completion-note" hidden data-i18n="completion">안내의 마지막 단계예요. 실제 기록이 완료되었다는 뜻은 아닙니다.</div>
+            <a id="step-source" class="source-link" target="_blank" rel="noopener"></a>
+          </div>
+        </div>
+        <div class="lesson-controls"><button type="button" id="previous" class="secondary-button" data-i18n="previous">이전 단계</button><button type="button" id="next" class="primary-button" data-i18n="next">다음 단계</button></div>
+      </section>
+    </div>
+
+    <section id="help" class="support-section" aria-labelledby="help-heading">
+      <div class="section-heading"><div><p class="section-index" data-i18n="indexHelp" aria-hidden="true">02 / 도움</p><h2 id="help-heading" tabindex="-1" data-i18n="helpTitle">막히는 부분을 함께 확인해요.</h2></div><p data-i18n="helpSubtitle">상황을 고르면 확인할 순서를 볼 수 있어요.</p></div>
+      <div class="support-card"><div class="issue-picker"><label for="issue" data-i18n="issueLabel">지금 어떤 상황인가요?</label><select id="issue"></select><p data-i18n="helpScope">기기·앱 버전에 따라 메뉴 이름은 다를 수 있어요.</p></div><article id="issue-answer" aria-labelledby="issue-title"><h3 id="issue-title" tabindex="-1"></h3><p id="issue-summary"></p><ol id="issue-actions"></ol><a id="issue-source" class="source-link" target="_blank" rel="noopener"></a></article></div>
+    </section>
+
+    <section class="ready-section" aria-labelledby="ready-heading"><div class="section-heading"><div><p class="section-index" data-i18n="indexReady" aria-hidden="true">03 / 시작 준비</p><h2 id="ready-heading" data-i18n="readyTitle">처음이라면, 이것부터.</h2></div></div><div id="ready-cards" class="ready-cards"></div></section>
+    <section class="policy-section" aria-labelledby="policy-heading"><span class="tag" data-i18n="needsReview">회사 확인 필요</span><h2 id="policy-heading" data-i18n="policyTitle">PIPE 운영 기준은 아직 확인 중이에요.</h2><p data-i18n="policyIntro">아래 항목을 관리자가 확인한 뒤 직원용 안내를 확정할 수 있습니다.</p><ul id="policy-list"></ul></section>
+  </main>
+  <footer><div><img class="brand-logo" src="assets/pipe-logo.webp" alt="PIPE" width="1333" height="1333"><p data-i18n="footerTraining">직원 교육용 · 내부 검토 프로토타입</p></div><p data-i18n="rights">앱 이미지는 시프티 공식 도움말의 예시입니다. 이미지 재배포 권리는 확인되지 않았으며 외부 공개 전 확인이 필요합니다.</p><a href="sources.md" data-i18n="sourcesFile">출처·조회일·이미지 기록</a></footer>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  <noscript><p class="noscript">단계 탐색에는 JavaScript가 필요합니다. / JavaScript is needed for this guide. <a href="https://shiftee.io/ko/help/article/clockInOut">한국어 도움말</a> · <a href="https://shiftee.io/en/help/article/clockInOut">English help</a></p></noscript>
+</body>
+</html>

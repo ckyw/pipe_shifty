@@ -1,0 +1,15 @@
+# Local verification artifacts and dependencies
+/output/
+/.tmp/
+/node_modules/
+.DS_Store
+*.log
+__pycache__/
+*.py[cod]
+
+# Credentials and local-only configuration
+.env
+.env.*
+!.env.example
+.clasprc*
+.clasp.json
