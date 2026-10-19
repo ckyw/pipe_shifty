@@ -35,8 +35,13 @@ const errors = [], external = [], consoleErrors = [];
     record('Original PIPE logo','Header/footer load, unchanged square ratio, contain fit and favicon reference');
 
 
-    const sizes = { 'clock-in': 3, qr: 3, 'clock-out': 2, correction: 3 };
-    for (const language of ['ko', 'en']) {
+    assert.equal(new URL(page.url()).hash,'#signup/0');
+    assert.equal(await page.locator('[data-lang]').count(),6);
+    assert.match(await page.locator('.contact-banner').innerText(),/문의하기.*CK Park.*카카오톡 ID.*cestck/);
+    record('Signup is first and contact is visible','Signup default, six native language buttons and requested KakaoTalk contact');
+
+    const sizes = { signup: 4, 'clock-in': 3, qr: 3, 'clock-out': 2, correction: 3 };
+    for (const language of ['ko', 'en', 'zh', 'es', 'uz', 'mn']) {
       await page.locator(`#lang-${language}`).click();
       for (const [flow, count] of Object.entries(sizes)) {
         await page.locator(`[data-flow="${flow}"]`).click();
@@ -47,9 +52,9 @@ const errors = [], external = [], consoleErrors = [];
           assert.equal(await page.locator('#next').isDisabled(), index === count - 1);
           assert.equal(await page.locator('[aria-current="step"].step-chip').getAttribute('data-step'), String(index));
           assert.ok((await page.locator('#step-description').innerText()).length > 10);
-          if (flow !== 'correction') {
+          if (!['signup','correction'].includes(flow)) {
             await page.waitForFunction(() => { const image = document.getElementById('app-screen'); return image.complete && image.naturalWidth > 0; });
-            assert.equal(await page.locator('#app-screen').getAttribute('lang'), language);
+            assert.equal(await page.locator('#app-screen').getAttribute('lang'), language === 'zh' ? 'zh-Hans' : language);
             const frame = await page.locator('#screen-window').boundingBox();
             const spot = await page.locator('#spotlight').boundingBox();
             assert.ok(spot.x >= frame.x && spot.y >= frame.y && spot.x + spot.width <= frame.x + frame.width + 1 && spot.y + spot.height <= frame.y + frame.height + 1);
@@ -59,6 +64,10 @@ const errors = [], external = [], consoleErrors = [];
               assert.match(await page.locator('#app-screen').getAttribute('alt'), /Korean timeclock/);
             }
           } else {
+            if (flow === 'signup') {
+              assert.match(await page.locator('#step-source').getAttribute('href'),index < 3 ? /signUp$/ : /joinCompany$/);
+              if (index === 1) assert.match(await page.locator('#step-description').innerText(),/Google|Gmail/);
+            }
             assert.equal(await page.locator('#screen-figure').isVisible(), false);
             assert.equal(await page.locator('#request-diagram').isVisible(), true);
           }
@@ -82,7 +91,7 @@ const errors = [], external = [], consoleErrors = [];
         assert.equal(await page.locator('#progress').getAttribute('aria-valuenow'), String(count - 1));
         await page.locator('#restart').click();
         assert.equal(await page.locator('#progress').getAttribute('aria-valuenow'), '1');
-        assert.equal(await page.locator('html').getAttribute('lang'), language);
+        assert.equal(await page.locator('html').getAttribute('lang'), language === 'zh' ? 'zh-Hans' : language);
         record(`${language} ${flow}: all steps, repeated selection, previous, restart, image`, `${count} steps`);
       }
       const issueIds = await page.locator('#issue option').evaluateAll(nodes => nodes.map(n => n.value));
@@ -99,6 +108,7 @@ const errors = [], external = [], consoleErrors = [];
       record(`${language} troubleshooting`, '10 distinct situations, actions and official sources');
     }
 
+    await page.locator('#lang-en').click();
     await page.locator('[data-flow="correction"]').click();
     await page.locator('#next').click();
     await page.locator('[data-request="edit"]').click();
@@ -177,7 +187,7 @@ const errors = [], external = [], consoleErrors = [];
     assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior), 'auto');
     record('Keyboard and reduced motion', 'Tab skip link, Enter/Space step navigation, heading focus and disabled transitions; native popup keyboard result is separate');
 
-    for (const language of ['ko','en']) {
+    for (const language of ['ko','en','zh','es','uz','mn']) {
       await page.locator(`#lang-${language}`).click();
       await page.locator('[data-flow="correction"]').click();
       await page.locator('[data-request="edit"]').click();
@@ -197,8 +207,13 @@ const errors = [], external = [], consoleErrors = [];
 
     for (const width of [320,390,768,1440]) {
       await page.setViewportSize({width,height:844});
-      for (const language of ['ko','en']) {
+      for (const language of ['ko','en','zh','es','uz','mn']) {
         await page.locator(`#lang-${language}`).click();
+        const headerOverlap=await page.evaluate(()=>{
+          const a=document.querySelector('.site-header>.brand').getBoundingClientRect(),b=document.querySelector('.contact-banner').getBoundingClientRect();
+          return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;
+        });
+        assert.equal(headerOverlap,false,`Contact overlaps brand ${width}/${language}`);
         for (const flow of Object.keys(sizes)) {
           await page.locator(`[data-flow="${flow}"]`).click();
           assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth+1), false, `Horizontal overflow ${width}/${language}/${flow}`);
@@ -212,21 +227,21 @@ const errors = [], external = [], consoleErrors = [];
         }
       }
     }
-    record('Responsive layout', '320/390/768/1440 px, both languages and all flows: no horizontal overflow');
+    record('Responsive layout', '320/390/768/1440 px, six languages and all flows: no horizontal overflow');
 
     await page.goto(`${base}#qr/99`);
     await page.waitForFunction(() => location.hash === '#qr/2');
     assert.equal(new URL(page.url()).hash,'#qr/2');
     await page.goto(`${base}#not-a-route`);
-    await page.waitForFunction(() => location.hash === '#clock-in/0');
-    assert.equal(new URL(page.url()).hash,'#clock-in/0');
+    await page.waitForFunction(() => location.hash === '#signup/0');
+    assert.equal(new URL(page.url()).hash,'#signup/0');
     assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length),0);
     assert.equal((await context.cookies()).length,0);
     record('Invalid route handling and no persistence', 'Unknown route defaults, step is clamped, no cookies or browser storage');
 
     const failedPage = await context.newPage();
     await failedPage.route('**/assets/*.png', route => route.abort());
-    await failedPage.goto(base);
+    await failedPage.goto(`${base}#clock-in/0`);
     await failedPage.waitForFunction(() => document.getElementById('screen-window').classList.contains('failed'));
     assert.match(await failedPage.locator('#image-message').innerText(),/불러오지 못/);
     await failedPage.locator('#lang-en').click();

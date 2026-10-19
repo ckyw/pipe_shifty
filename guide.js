@@ -74,7 +74,7 @@
     breaks: { slug: 'attendanceBreakTime', title: pair('휴게시간 기록하기', 'Record break time') },
     automation: { slug: 'howToUseShortcutsForClockInAndOut', title: pair('앱 자동화', 'App-opening automation') },
   };
-  const flowOrder = ['clock-in', 'qr', 'clock-out', 'correction'];
+  const flowOrder = ['signup', 'clock-in', 'qr', 'clock-out', 'correction'];
   const flows = {
     'clock-in': {
       name: pair('출근 기록 알아보기', 'Learn to clock in'), short: pair('출근하기', 'Clock in'), sub: pair('일정 → 인증 → 확인', 'Shift → verify → check'),
@@ -172,7 +172,49 @@
     'qr-en': { file: 'qr-en.png', width: 4012, height: 2250, panes: [[0,27.8],[36.1,27.8],[72.2,27.8]] },
   };
 
-  const state = { language: 'ko', flow: 'clock-in', steps: { 'clock-in': 0, qr: 0, 'clock-out': 0, correction: 0 }, issue: 'gps', requestKind: 'create' };
+  const five = (ko, en, zh, es, uz) => ({ko,en,zh,es,uz});
+  copy.contact = five('문의하기','Contact','联系我们','Contacto','Bog‘lanish');
+  copy.kakaoId = five('카카오톡 ID','KakaoTalk ID','KakaoTalk ID','ID de KakaoTalk','KakaoTalk ID');
+  copy.languageZh = five('중국어로 가이드 읽기','Read this guide in Chinese','用中文阅读指南','Leer la guía en chino','Qo‘llanmani xitoy tilida o‘qish');
+  copy.languageEs = five('스페인어로 가이드 읽기','Read this guide in Spanish','用西班牙语阅读指南','Leer la guía en español','Qo‘llanmani ispan tilida o‘qish');
+  copy.languageUz = five('우즈베크어로 가이드 읽기','Read this guide in Uzbek','用乌兹别克语阅读指南','Leer la guía en uzbeko','Qo‘llanmani o‘zbek tilida o‘qish');
+  copy.languageMn = five('몽골어로 가이드 읽기','Read this guide in Mongolian','用蒙古语阅读指南','Leer la guía en mongol','Qo‘llanmani mo‘g‘ul tilida o‘qish');
+  source.signup = {slug:'signUp',title:five('회원가입','Sign up','注册账号','Crear una cuenta','Ro‘yxatdan o‘tish')};
+  flows.signup = {
+    name: five('처음 시작하기 · 회원가입','Getting started · Sign up','开始使用 · 注册','Primeros pasos · Registro','Boshlash · Ro‘yxatdan o‘tish'),
+    short: five('회원가입부터','Sign up first','先注册账号','Crear una cuenta','Avval ro‘yxatdan o‘ting'),
+    sub: five('Google 가입 권장 → 직장 합류','Google recommended → join PIPE','推荐 Google → 加入公司','Google recomendado → unirse','Google tavsiya etiladi → qo‘shiling'),
+    steps: [
+      {chip:five('가입 화면','Open sign-up','打开注册页','Abrir registro','Ro‘yxat oynasi'),title:five('1단계 · 시프티 회원가입을 시작해요','Step 1 · Start your Shiftee account','第1步 · 开始注册 Shiftee','Paso 1 · Crea tu cuenta de Shiftee','1-qadam · Shiftee hisobini yarating'),
+       body:five('시프티 앱 시작 화면에서 가입하기를 선택하세요. PC에서는 shiftee.io 상단의 회원가입을 선택하세요.','In the Shiftee app, choose Sign Up on the start screen. On a computer, open shiftee.io and choose Sign Up at the top.','在 Shiftee 应用开始页面选择注册。使用电脑时，打开 shiftee.io 并点击顶部的注册。','En la pantalla inicial de la app Shiftee, elige Registrarse. En un ordenador, abre shiftee.io y selecciona el registro en la parte superior.','Shiftee ilovasining boshlang‘ich oynasida ro‘yxatdan o‘tishni tanlang. Kompyuterda shiftee.io saytining yuqorisidagi ro‘yxatdan o‘tish tugmasini bosing.'),
+       note:five('이 페이지는 가입 안내입니다. 계정이나 비밀번호는 실제 시프티·Google 화면에서만 입력하세요.','This page only explains registration. Enter account details and passwords only on the actual Shiftee or Google screens.','本页面仅提供注册说明。请只在真正的 Shiftee 或 Google 页面输入账号和密码。','Esta página solo explica el registro. Introduce tus datos y contraseñas únicamente en las pantallas reales de Shiftee o Google.','Bu sahifa faqat ro‘yxatdan o‘tishni tushuntiradi. Hisob va parol ma’lumotlarini faqat haqiqiy Shiftee yoki Google oynalarida kiriting.'),src:'signup'},
+      {chip:five('Google로 가입','Use Google','使用 Google','Usar Google','Google orqali'),title:five('Google 계정으로 가입하는 방법을 권장해요','We recommend signing up with Google','推荐使用 Google 账号注册','Recomendamos registrarse con Google','Google hisobidan foydalanishni tavsiya qilamiz'),
+       body:five('가입 방법에서 Google 계정 연동을 선택하고, 본인의 Gmail 계정으로 로그인하세요. Google 화면에서 안내하는 확인 절차를 완료하세요.','Choose the Google account option and sign in with your own Gmail account. Complete the confirmation steps shown by Google.','选择 Google 账号关联，并使用本人的 Gmail 账号登录。按照 Google 页面提示完成确认。','Selecciona la opción de Google e inicia sesión con tu propia cuenta de Gmail. Completa las confirmaciones que muestre Google.','Google hisobini ulash variantini tanlang va o‘zingizning Gmail hisobingiz bilan kiring. Google ko‘rsatgan tasdiqlash bosqichlarini bajaring.'),
+       note:five('Google 계정 연동 가입은 시프티의 별도 이메일 본인 인증이 필요하지 않습니다. 이후에도 같은 Google 계정으로 로그인하세요.','Google-linked sign-up does not require Shiftee’s separate email verification. Use the same Google account when you log in again.','关联 Google 注册无需另行进行 Shiftee 邮箱身份验证。以后也请使用同一个 Google 账号登录。','El registro vinculado a Google no requiere la verificación de correo separada de Shiftee. Usa la misma cuenta de Google para volver a entrar.','Google orqali ro‘yxatdan o‘tishda Shiftee’ning alohida email tasdig‘i talab qilinmaydi. Keyingi safar ham aynan shu Google hisobidan foydalaning.'),src:'signup'},
+      {chip:five('가입 확인','Check account','确认账号','Confirmar cuenta','Hisobni tekshiring'),title:five('가입을 마치고 같은 계정으로 로그인해요','Finish registration and sign in','完成注册并登录','Completa el registro e inicia sesión','Ro‘yxatdan o‘tishni tugating va kiring'),
+       body:five('화면에 추가 정보나 동의 항목이 표시되면 확인해 가입을 마치세요. Google 계정을 쓰지 않고 이메일로 가입했다면, 시프티 인증 메일의 본인 인증 버튼까지 눌러야 합니다.','Complete any additional information or consent shown on screen. If you sign up by email instead of Google, you must also use the verification button in Shiftee’s email.','如页面要求补充资料或同意条款，请确认并完成注册。如果不用 Google 而使用邮箱注册，还需要点击 Shiftee 验证邮件中的身份验证按钮。','Completa los datos o consentimientos adicionales que aparezcan. Si te registras por correo en lugar de Google, pulsa también el botón de verificación del mensaje de Shiftee.','Ekrandagi qo‘shimcha ma’lumot yoki rozilik bandlarini yakunlang. Google o‘rniga email bilan ro‘yxatdan o‘tsangiz, Shiftee yuborgan xatdagi tasdiqlash tugmasini ham bosing.'),
+       note:five('이메일 가입은 영문·숫자·특수문자를 조합한 10자 이상 비밀번호가 필요합니다. 인증 메일이 3분 안에 오지 않으면 스팸함을 확인하세요.','Email sign-up requires a password of at least 10 characters combining letters, numbers and special characters. Check spam if the verification email has not arrived within 3 minutes.','邮箱注册需要至少10位、包含字母、数字和特殊符号的密码。如果3分钟内未收到验证邮件，请查看垃圾邮件。','El registro por correo requiere una contraseña de al menos 10 caracteres con letras, números y símbolos. Revisa el correo no deseado si el mensaje no llega en 3 minutos.','Email bilan ro‘yxatdan o‘tishda harf, raqam va maxsus belgilardan iborat kamida 10 belgili parol kerak. Tasdiq xati 3 daqiqada kelmasa, spam papkasini tekshiring.'),src:'signup'},
+      {chip:five('PIPE 합류','Join PIPE','加入 PIPE','Unirse a PIPE','PIPE’ga qo‘shiling'),title:five('가입 후 PIPE 직장에 합류해요','After sign-up, join PIPE','注册后加入 PIPE 公司','Después del registro, únete a PIPE','Ro‘yxatdan o‘tgach PIPE’ga qo‘shiling'),
+       body:five('시프티에 로그인한 뒤 직원용 직장 합류하기에서 관리자가 전달한 합류코드를 입력하세요. 가입만으로 회사 합류가 완료되지는 않습니다.','After signing in, choose the employee Join Company option and enter the invitation code from your administrator. Signing up alone does not join you to the company.','登录后，在员工加入公司选项中输入管理员提供的邀请码。仅注册账号并不代表已加入公司。','Tras iniciar sesión, elige Unirse a una empresa para empleados e introduce el código del administrador. Registrarse no te incorpora automáticamente a la empresa.','Kirgandan so‘ng xodimlar uchun kompaniyaga qo‘shilish bo‘limida administrator bergan taklif kodini kiriting. Faqat hisob yaratish kompaniyaga qo‘shilganingizni anglatmaydi.'),
+       note:five('현재 합류코드는 12자리이며, 기존 6자리 코드는 별도 입력 경로를 이용하세요. 코드나 계정 문제는 상단 CK Park 문의 정보를 확인하세요.','Current invitation codes have 12 digits; older 6-digit codes use a separate option. For code or account questions, use CK Park’s contact details at the top.','当前邀请码为12位，旧6位码请使用单独的输入入口。邀请码或账号有问题时，请查看顶部 CK Park 的联系方式。','Los códigos actuales tienen 12 dígitos; los antiguos de 6 usan otra opción. Para dudas sobre códigos o cuentas, consulta el contacto de CK Park en la parte superior.','Hozirgi taklif kodi 12 xonali; eski 6 xonali kod uchun alohida variant bor. Kod yoki hisob bo‘yicha savollar uchun yuqoridagi CK Park aloqa ma’lumotidan foydalaning.'),src:'join'}
+    ]
+  };
+  // Full guide translations use stable content paths; no remote translation service.
+  function addTranslations(value, path = '') {
+    if (!value || typeof value !== 'object') return;
+    if (typeof value.ko === 'string' && typeof value.en === 'string') {
+      const extra = window.PIPE_GUIDE_TRANSLATIONS[path];
+      if (extra) Object.assign(value, extra);
+      for (const language of ['ko','en','zh','es','uz','mn']) {
+        if (typeof value[language] !== 'string' || !value[language].trim()) throw new Error(`Missing translation: ${path}/${language}`);
+      }
+      return;
+    }
+    Object.entries(value).forEach(([key, child]) => addTranslations(child, path ? `${path}.${key}` : key));
+  }
+  addTranslations({copy,source,flows,correctionSteps,issues,ready,policies});
+
+  const state = { language: 'ko', flow: 'signup', steps: { signup: 0, 'clock-in': 0, qr: 0, 'clock-out': 0, correction: 0 }, issue: 'gps', requestKind: 'create' };
   const $ = id => document.getElementById(id);
   const local = value => value[state.language];
   const t = key => local(copy[key]);
@@ -196,14 +238,14 @@
   }
   function focusStep() { $('step-title').focus({ preventScroll: true }); $('guide').scrollIntoView({ block: 'start', behavior: 'auto' }); }
   function renderStatic() {
-    document.documentElement.lang = state.language;
+    document.documentElement.lang = state.language === 'zh' ? 'zh-Hans' : state.language;
     document.title = t('pageTitle');
     document.querySelector('meta[name="description"]').content = t('training');
     document.querySelectorAll('[data-i18n]').forEach(node => { node.textContent = t(node.dataset.i18n); });
     document.querySelectorAll('[data-label]').forEach(node => { node.setAttribute('aria-label', t(node.dataset.label)); });
     document.querySelectorAll('[data-lang]').forEach(node => {
       node.setAttribute('aria-pressed', String(node.dataset.lang === state.language));
-      node.setAttribute('aria-label', t(node.dataset.lang === 'ko' ? 'languageKo' : 'languageEn'));
+      node.setAttribute('aria-label', t({ko:'languageKo',en:'languageEn',zh:'languageZh',es:'languageEs',uz:'languageUz',mn:'languageMn'}[node.dataset.lang]));
     });
   }
   function renderFlows() {
@@ -226,7 +268,7 @@
     $('image-message').textContent = loaded ? '' : t(failed ? 'imageError' : 'imageLoading');
   }
   function renderImage(step) {
-    const isCorrection = state.flow === 'correction';
+    const isCorrection = ['signup','correction'].includes(state.flow);
     $('screen-figure').hidden = isCorrection;
     $('request-diagram').hidden = !isCorrection;
     if (isCorrection) {
@@ -237,7 +279,7 @@
       }));
       return;
     }
-    const imageLanguage = step.forceKo ? 'ko' : state.language;
+    const imageLanguage = step.forceKo || state.language === 'ko' ? 'ko' : 'en';
     const info = images[`${step.image}-${imageLanguage}`];
     const [left, width] = info.panes[step.pane];
     const frame = $('screen-window');
@@ -246,7 +288,7 @@
     const img = $('app-screen');
     img.alt = local(step.alt);
     // lang applies to the accessible alt text, not text baked into the pixels.
-    img.lang = state.language;
+    img.lang = state.language === 'zh' ? 'zh-Hans' : state.language;
     if (img.getAttribute('src') !== `assets/${info.file}`) img.src = `assets/${info.file}`;
     const [x,y,w,h] = step.spot[imageLanguage];
     Object.assign($('spotlight').style, { left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%` });
@@ -285,6 +327,7 @@
     $('next').disabled = index === steps.length-1;
     $('next').textContent = t(index === steps.length-1 ? 'lastStep' : 'next');
     $('completion-note').hidden = index !== steps.length-1;
+    if (state.flow === 'signup') $('completion-note').textContent = local(step.note);
     sourceLink($('step-source'), step.src, state.language === 'en' && step.src === 'clock' && !step.forceKo ? 'en' : 'ko');
     renderImage(step);
   }
@@ -315,8 +358,8 @@
   }
   function readHash() {
     if (['#guide', '#help'].includes(window.location.hash)) return;
-    const match = /^#(clock-in|qr|clock-out|correction)\/(\d{1,2})$/.exec(window.location.hash);
-    state.flow = match ? match[1] : 'clock-in';
+    const match = /^#(signup|clock-in|qr|clock-out|correction)\/(\d{1,2})$/.exec(window.location.hash);
+    state.flow = match ? match[1] : 'signup';
     const parsed = match ? Number(match[2]) : 0;
     state.steps[state.flow] = Math.min(Math.max(0, parsed), stepsFor(state.flow).length - 1);
     syncHash(true);

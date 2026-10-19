@@ -14,3 +14,9 @@ main{max-width:1240px;margin:auto;padding:0 32px}.intro{padding:52px 0 36px;max-
 
 /* User-provided original logo: preserve the full square canvas and aspect ratio. */
 .brand-logo{display:block;width:80px;height:auto;aspect-ratio:1;object-fit:contain;flex-shrink:0}footer .brand-logo{width:64px}@media(max-width:600px){.brand-logo{width:64px}}
+
+/* Five-language header and visible support contact. */
+.site-header{flex-wrap:wrap}.contact-banner{font-size:13px;color:var(--muted);margin-left:auto}.contact-banner strong{color:var(--ink)}.language-switch{flex-wrap:wrap;max-width:100%;justify-content:center}.language-switch button{padding:10px 13px}.flow-text{min-width:0}.flow-text strong,.flow-text small,.step-description,.step-copy p,.contact-banner{overflow-wrap:anywhere}html:lang(zh-Hans) h1,html:lang(zh-Hans) h2,html:lang(zh-Hans) h3{word-break:normal}
+@media(max-width:850px){.flow-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.site-header{justify-content:flex-start}.contact-banner{margin:0;flex:1;min-width:160px}.language-switch{width:100%;border-radius:14px;gap:0}.language-switch button{flex:1 1 auto;padding:10px 8px}.flow-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.site-header>.brand{flex:1 0 100%}.contact-banner{flex:1 0 100%;min-width:0}.brand-caption{white-space:normal}}
