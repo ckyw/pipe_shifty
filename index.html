@@ -16,13 +16,16 @@
   <header class="site-header">
     <a class="brand" href="#signup/0" aria-label="PIPE 가이드 첫 단계" data-label="homeLabel"><img class="brand-logo" src="assets/pipe-logo.webp" alt="PIPE" width="1333" height="1333"><span class="brand-caption" data-i18n="brandCaption">직원 가이드</span></a>
     <p class="contact-banner"><span data-i18n="contact">문의하기</span> <strong>CK Park</strong> <span data-i18n="kakaoId">카카오톡 ID</span> <strong>cestck</strong></p>
-    <div class="language-switch" role="group" data-label="languageLabel" aria-label="가이드 언어">
-      <button type="button" id="lang-ko" lang="ko" data-lang="ko" aria-pressed="true">한국어</button>
-      <button type="button" id="lang-en" lang="en" data-lang="en" aria-pressed="false">English</button>
-      <button type="button" id="lang-zh" lang="zh-Hans" data-lang="zh" aria-pressed="false">中文</button>
-      <button type="button" id="lang-es" lang="es" data-lang="es" aria-pressed="false">Español</button>
-      <button type="button" id="lang-uz" lang="uz" data-lang="uz" aria-pressed="false">O‘zbekcha</button>
-      <button type="button" id="lang-mn" lang="mn" data-lang="mn" aria-pressed="false">Монгол</button>
+    <div class="language-switch">
+      <label for="language-select" data-i18n="languageLabel">가이드 언어</label>
+      <select id="language-select" name="guide-language">
+        <option value="ko" lang="ko">한국어</option>
+        <option value="en" lang="en">English</option>
+        <option value="zh" lang="zh-Hans">中文</option>
+        <option value="es" lang="es">Español</option>
+        <option value="uz" lang="uz">O‘zbekcha</option>
+        <option value="mn" lang="mn">Монгол</option>
+      </select>
     </div>
   </header>
   <main>

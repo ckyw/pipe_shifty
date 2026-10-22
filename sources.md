@@ -57,3 +57,21 @@
 ## 2026-10-22 QR 미사용 운영 반영
 
 사용자가 PIPE는 QR을 사용하지 않는다고 확인했습니다. 현재 매뉴얼은 QR 절차·QR 카메라 도움말·이미지 참조를 제거했으며, 공식 문서의 일반적인 QR 지원 설명을 PIPE 직원의 필수 절차로 안내하지 않습니다. 위 QR 원본 이미지·단계 대응 내용은 과거 버전의 출처 기록입니다. 원본 파일은 보존하지만 현재 매뉴얼에서 로드하지 않습니다.
+
+## 2026-10-22 Google 전용 모바일 회원가입 이미지
+
+사용자 요청에 따라 현행 가입 안내는 모바일 Google 계정 연동으로 한정합니다. 위 2026-10-19의 PC·이메일 가입 설명은 과거 변경 근거이며 현재 페이지에서 제거했습니다. 회원가입 공식 문서의 모바일 STEP 3 및 `mob_signUp2.png`는 이메일 가입 전용이므로 사용하지 않습니다.
+
+| 현재 파일 | 사용자 지정 출처 | 원본 이미지 URL | 크기 | 현재 표시 범위 |
+| --- | --- | --- | --- | --- |
+| assets/signup-ko.png | [회원가입 모바일](https://shiftee.io/ko/help/article/signUp#%EB%AA%A8%EB%B0%94%EC%9D%BC_1) | [mob_signUp1.png](https://shiftee.s3.ap-northeast-2.amazonaws.com/website/contents/helpArticles/ko/getting_started/signUp/mob_signUp1.png) | 2566×2250 | 1단계: 왼쪽 시작 화면, 2·3단계: 오른쪽 Google 버튼만 CSS 확대 |
+| assets/join-ko.png | [직원 시작 가이드](https://shiftee.io/ko/help/article/gettingStartedGuideForStaff) | [mob_joinCompany.png](https://shiftee.s3.ap-northeast-2.amazonaws.com/website/contents/helpArticles/ko/getting_started/gettingStartedGuideForStaff/mob_joinCompany.png) | 309×609 | 4단계: 모바일 직원용 직장 합류 화면 전체 |
+
+조회·다운로드일: 2026-10-22. 다운로드 원본을 변환하지 않았고 표시 범위만 CSS로 지정했습니다. 회원가입 왼쪽 패널은 원본 x=0~1118, Google 영역은 x=59.1~65.5%, y=79.4~87.4%입니다. Google 영역은 이메일 버튼 아래에서 시작하며 Apple 등 옆 버튼 앞에서 끝나도록 원본을 직접 확인했습니다.
+
+원본 SHA-256:
+
+- signup-ko.png: `d67159e827e7c3177e5ded3add2c471295443fbac3ea50f0e0d4dd4ea9d2a554`
+- join-ko.png: `ea990cc1978097a5b997c2322e99e2f48d8851bf5ea01c856bfd34e690288f8f`
+
+직원 시작 가이드의 합류 화면은 이전 6자리 코드 예시입니다. 최신 [직장 합류하기](https://shiftee.io/ko/help/article/joinCompany)에서는 12자리 입력과 이전 6자리 별도 경로를 함께 안내하므로, 본문은 최신 절차를 유지하고 원본 이미지의 연식을 설명합니다. 원본 이미지의 회사·코드는 PIPE 운영 정보가 아닙니다.

@@ -1069,10 +1069,10 @@ window.PIPE_GUIDE_TRANSLATIONS = {
     "mn": "Бодит аппын хэл солих"
   },
   "ready.1.body": {
-    "zh": "本页面语言按钮只改变指南。Shiftee 中请打开更多→我的账号→语言，选择韩语或英语并保存。这是个人设置，不影响公司语言。",
-    "es": "Los botones de esta página solo traducen la guía. En Shiftee, abre Más → Mi cuenta → Idioma, elige coreano o inglés y guarda. Es un ajuste personal, no cambia el idioma de la empresa.",
-    "uz": "Bu sahifadagi til tugmalari faqat qo‘llanmani o‘zgartiradi. Shiftee’da Ko‘proq → Mening hisobim → Til orqali koreyscha yoki inglizchani tanlab saqlang. Bu shaxsiy sozlama, kompaniya tilini o‘zgartirmaydi.",
-    "mn": "Энэ хуудасны хэлний товч зөвхөн гарын авлагын хэлийг солино. Shiftee дээр Дэлгэрэнгүй → Миний бүртгэл → Хэл хэсгээс солонгос эсвэл англи хэлийг сонгоод хадгалаарай. Энэ нь хувийн тохиргоо бөгөөд байгууллагын хэлийг өөрчлөхгүй."
+    "zh": "本页面的语言选择菜单只改变指南。Shiftee 中请打开更多→我的账号→语言，选择韩语或英语并保存。这是个人设置，不影响公司语言。",
+    "es": "El menú de idiomas de esta página solo cambia la guía. En Shiftee, abre Más → Mi cuenta → Idioma, elige coreano o inglés y guarda. Es un ajuste personal, no cambia el idioma de la empresa.",
+    "uz": "Bu sahifadagi til tanlash menyusi faqat qo‘llanmani o‘zgartiradi. Shiftee’da Ko‘proq → Mening hisobim → Til orqali koreyscha yoki inglizchani tanlab saqlang. Bu shaxsiy sozlama, kompaniya tilini o‘zgartirmaydi.",
+    "mn": "Энэ хуудасны хэл сонгох цэс зөвхөн гарын авлагын хэлийг солино. Shiftee дээр Дэлгэрэнгүй → Миний бүртгэл → Хэл хэсгээс солонгос эсвэл англи хэлийг сонгоод хадгалаарай. Энэ нь хувийн тохиргоо бөгөөд байгууллагын хэлийг өөрчлөхгүй."
   },
   "ready.2.title": {
     "zh": "区分申请和实际记录",
@@ -1142,62 +1142,5 @@ window.PIPE_GUIDE_TRANSLATIONS = {
   },
   "source.signup.title": {
     "mn": "Бүртгүүлэх"
-  },
-  "flows.signup.name": {
-    "mn": "Эхлэх · Бүртгүүлэх"
-  },
-  "flows.signup.short": {
-    "mn": "Эхлээд бүртгүүлэх"
-  },
-  "flows.signup.sub": {
-    "mn": "Google ашиглахыг зөвлөе → PIPE-д нэгдэх"
-  },
-  "flows.signup.steps.0.chip": {
-    "mn": "Бүртгэл нээх"
-  },
-  "flows.signup.steps.0.title": {
-    "mn": "1-р алхам · Shiftee бүртгэлээ үүсгээрэй"
-  },
-  "flows.signup.steps.0.body": {
-    "mn": "Shiftee аппын эхлэх дэлгэцээс Sign Up буюу бүртгүүлэхийг сонгоорой. Компьютер дээр shiftee.io сайтын дээд талын бүртгүүлэх товчийг сонгоно."
-  },
-  "flows.signup.steps.0.note": {
-    "mn": "Энэ хуудас зөвхөн бүртгүүлэх заавар юм. Бүртгэлийн мэдээлэл, нууц үгээ зөвхөн бодит Shiftee эсвэл Google дэлгэц дээр оруулаарай."
-  },
-  "flows.signup.steps.1.chip": {
-    "mn": "Google ашиглах"
-  },
-  "flows.signup.steps.1.title": {
-    "mn": "Google бүртгэлээр бүртгүүлэхийг зөвлөж байна"
-  },
-  "flows.signup.steps.1.body": {
-    "mn": "Google бүртгэл холбох сонголтыг сонгож, өөрийн Gmail бүртгэлээр нэвтрээрэй. Google дэлгэц дээрх баталгаажуулах алхмуудыг гүйцэтгэнэ."
-  },
-  "flows.signup.steps.1.note": {
-    "mn": "Google-тэй холбож бүртгүүлэхэд Shiftee-ийн тусдаа имэйл баталгаажуулалт шаардлагагүй. Дараа нэвтрэхдээ мөн тэр Google бүртгэлээ ашиглаарай."
-  },
-  "flows.signup.steps.2.chip": {
-    "mn": "Бүртгэл шалгах"
-  },
-  "flows.signup.steps.2.title": {
-    "mn": "Бүртгэлээ дуусгаад нэвтрээрэй"
-  },
-  "flows.signup.steps.2.body": {
-    "mn": "Дэлгэц дээр нэмэлт мэдээлэл эсвэл зөвшөөрөл шаардаж байвал гүйцээнэ. Google бус имэйлээр бүртгүүлсэн бол Shiftee-ээс ирсэн имэйлийн баталгаажуулах товчийг мөн дарна."
-  },
-  "flows.signup.steps.2.note": {
-    "mn": "Имэйлээр бүртгүүлэхэд үсэг, тоо, тусгай тэмдэгт хосолсон 10-аас доошгүй тэмдэгттэй нууц үг хэрэгтэй. Баталгаажуулах имэйл 3 минутын дотор ирээгүй бол спам хавтсыг шалгаарай."
-  },
-  "flows.signup.steps.3.chip": {
-    "mn": "PIPE-д нэгдэх"
-  },
-  "flows.signup.steps.3.title": {
-    "mn": "Бүртгүүлсний дараа PIPE байгууллагад нэгдээрэй"
-  },
-  "flows.signup.steps.3.body": {
-    "mn": "Нэвтэрсний дараа ажилтны Байгууллагад нэгдэх сонголтоор администратороос авсан урилгын кодоо оруулна. Зөвхөн бүртгүүлснээр байгууллагад нэгдсэнд тооцогдохгүй."
-  },
-  "flows.signup.steps.3.note": {
-    "mn": "Одоогийн урилгын код 12 оронтой. Хуучин 6 оронтой кодыг тусдаа сонголтоор оруулна. Код эсвэл бүртгэлийн асуудал гарвал дээд хэсгийн CK Park-ийн холбоо барих мэдээллийг ашиглаарай."
   }
 };

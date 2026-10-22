@@ -135,7 +135,7 @@
 
   const ready = [
     { title: pair('회사에 합류하기', 'Join your company'), body: pair('관리자에게 받은 12자리 합류코드를 실제 앱의 직원용 직장 합류하기에서 입력하세요. 기존 6자리 코드는 입력창 아래의 6자리 코드 경로를 이용하세요. 코드를 못 받았다면 회사에 문의해 주세요.', 'Enter the 12-digit invitation code from your administrator in the app’s employee Join Company screen. For an older 6-digit code, use the separate 6-digit-code option below the field. Ask your company if no code arrived.'), src: 'join' },
-    { title: pair('실제 앱 언어 바꾸기', 'Change the actual app language'), body: pair('이 페이지의 언어 버튼은 가이드만 바꿉니다. 시프티 앱에서는 더보기 → 내 계정 → 언어에서 한국어 또는 영어를 선택하고 저장하세요. 개인 계정 설정이며 회사 전체 언어를 바꾸지 않습니다.', 'This page’s language buttons change only the guide. In Shiftee, open More → My Account → Language, choose Korean or English and save. This is a personal account setting; it does not change the company language.'), src: 'language' },
+    { title: pair('실제 앱 언어 바꾸기', 'Change the actual app language'), body: pair('이 페이지의 언어 선택 메뉴는 가이드만 바꿉니다. 시프티 앱에서는 더보기 → 내 계정 → 언어에서 한국어 또는 영어를 선택하고 저장하세요. 개인 계정 설정이며 회사 전체 언어를 바꾸지 않습니다.', 'This page’s language menu changes only the guide. In Shiftee, open More → My Account → Language, choose Korean or English and save. This is a personal account setting; it does not change the company language.'), src: 'language' },
     { title: pair('요청과 기록 구분하기', 'Tell requests and records apart'), body: pair('보내기는 요청 제출입니다. 승인 대기·승인·거절 상태를 확인하고, 승인 후 실제 기록까지 확인하세요. 회사에 없는 기능이나 정해지지 않은 승인자를 임의로 선택하지 마세요.', 'Sending submits a request. Check whether it is pending, approved or rejected, then check the actual record after approval. Do not assume a feature is enabled or choose an unconfirmed approver.'), src: 'create' },
   ];
   const policies = [
@@ -147,6 +147,8 @@
     pair('문의 담당자·직원 공유 범위·공식 이미지 이용 권리', 'Support contact, staff sharing scope and rights to use official images'),
   ];
   const images = {
+    'signup-ko': { file:'signup-ko.png', width:2566, height:2250, panes:[[0,1118/2566*100],[59.1,6.4,79.4,8]] },
+    'join-ko': { file:'join-ko.png', width:309, height:609, panes:[[0,100]] },
     'clock-ko': { file: 'clock-ko.png', width: 3892, height: 2250, panes: [[0,28.7],[35.65,28.7],[71.3,28.7]] },
     'clock-en': { file: 'clock-en.png', width: 3953, height: 2250, panes: [[0,27.7],[35.8,28.2],[71.7,28.3]] },
   };
@@ -159,25 +161,259 @@
   copy.languageUz = five('우즈베크어로 가이드 읽기','Read this guide in Uzbek','用乌兹别克语阅读指南','Leer la guía en uzbeko','Qo‘llanmani o‘zbek tilida o‘qish');
   copy.languageMn = five('몽골어로 가이드 읽기','Read this guide in Mongolian','用蒙古语阅读指南','Leer la guía en mongol','Qo‘llanmani mo‘g‘ul tilida o‘qish');
   source.signup = {slug:'signUp',title:five('회원가입','Sign up','注册账号','Crear una cuenta','Ro‘yxatdan o‘tish')};
+  copy.imageSignupKo = {"ko": "한국어 공식 모바일 시작 화면입니다. 앱 버전에 따라 버튼 이름이 다를 수 있습니다.", "en": "Official Korean mobile start screen. Button labels may vary by app version.", "zh": "韩语官方手机开始页面。按钮名称可能因应用版本而异。", "es": "Pantalla móvil oficial en coreano. Los nombres pueden variar según la versión.", "uz": "Koreyscha rasmiy mobil boshlang‘ich oyna. Tugma nomlari versiyaga qarab farq qilishi mumkin.", "mn": "Албан ёсны солонгос утасны эхлэх дэлгэц. Товчны нэр аппын хувилбараас хамаарч өөр байж болно."};
+  copy.imageJoinKo = {"ko": "직원 시작 가이드의 한국어 공식 모바일 이미지입니다. 이미지 속 회사·코드는 예시이며 PIPE의 실제 정보가 아닙니다.", "en": "Official Korean mobile image from the staff getting-started guide. Its company and code are examples, not PIPE data.", "zh": "员工开始指南中的韩语官方手机图片。公司和代码均为示例，并非 PIPE 实际信息。", "es": "Imagen móvil oficial en coreano de la guía de empleados. La empresa y el código son ejemplos, no datos de PIPE.", "uz": "Xodimlar qo‘llanmasidagi koreyscha rasmiy mobil rasm. Kompaniya va kod namuna, PIPE ma’lumoti emas.", "mn": "Ажилтны эхлэх гарын авлагын албан ёсны солонгос утасны зураг. Байгууллага, код нь жишээ бөгөөд PIPE-ийн бодит мэдээлэл биш."};
+  source.staff = {"slug": "gettingStartedGuideForStaff", "title": {"ko": "직원 시작 가이드", "en": "Staff getting-started guide", "zh": "员工开始指南", "es": "Guía de inicio para empleados", "uz": "Xodimlar uchun boshlang‘ich qo‘llanma", "mn": "Ажилтны эхлэх гарын авлага"}};
   flows.signup = {
-    name: five('처음 시작하기 · 회원가입','Getting started · Sign up','开始使用 · 注册','Primeros pasos · Registro','Boshlash · Ro‘yxatdan o‘tish'),
-    short: five('회원가입부터','Sign up first','先注册账号','Crear una cuenta','Avval ro‘yxatdan o‘ting'),
-    sub: five('Google 가입 권장 → 직장 합류','Google recommended → join PIPE','推荐 Google → 加入公司','Google recomendado → unirse','Google tavsiya etiladi → qo‘shiling'),
-    steps: [
-      {chip:five('가입 화면','Open sign-up','打开注册页','Abrir registro','Ro‘yxat oynasi'),title:five('1단계 · 시프티 회원가입을 시작해요','Step 1 · Start your Shiftee account','第1步 · 开始注册 Shiftee','Paso 1 · Crea tu cuenta de Shiftee','1-qadam · Shiftee hisobini yarating'),
-       body:five('시프티 앱 시작 화면에서 가입하기를 선택하세요. PC에서는 shiftee.io 상단의 회원가입을 선택하세요.','In the Shiftee app, choose Sign Up on the start screen. On a computer, open shiftee.io and choose Sign Up at the top.','在 Shiftee 应用开始页面选择注册。使用电脑时，打开 shiftee.io 并点击顶部的注册。','En la pantalla inicial de la app Shiftee, elige Registrarse. En un ordenador, abre shiftee.io y selecciona el registro en la parte superior.','Shiftee ilovasining boshlang‘ich oynasida ro‘yxatdan o‘tishni tanlang. Kompyuterda shiftee.io saytining yuqorisidagi ro‘yxatdan o‘tish tugmasini bosing.'),
-       note:five('이 페이지는 가입 안내입니다. 계정이나 비밀번호는 실제 시프티·Google 화면에서만 입력하세요.','This page only explains registration. Enter account details and passwords only on the actual Shiftee or Google screens.','本页面仅提供注册说明。请只在真正的 Shiftee 或 Google 页面输入账号和密码。','Esta página solo explica el registro. Introduce tus datos y contraseñas únicamente en las pantallas reales de Shiftee o Google.','Bu sahifa faqat ro‘yxatdan o‘tishni tushuntiradi. Hisob va parol ma’lumotlarini faqat haqiqiy Shiftee yoki Google oynalarida kiriting.'),src:'signup'},
-      {chip:five('Google로 가입','Use Google','使用 Google','Usar Google','Google orqali'),title:five('Google 계정으로 가입하는 방법을 권장해요','We recommend signing up with Google','推荐使用 Google 账号注册','Recomendamos registrarse con Google','Google hisobidan foydalanishni tavsiya qilamiz'),
-       body:five('가입 방법에서 Google 계정 연동을 선택하고, 본인의 Gmail 계정으로 로그인하세요. Google 화면에서 안내하는 확인 절차를 완료하세요.','Choose the Google account option and sign in with your own Gmail account. Complete the confirmation steps shown by Google.','选择 Google 账号关联，并使用本人的 Gmail 账号登录。按照 Google 页面提示完成确认。','Selecciona la opción de Google e inicia sesión con tu propia cuenta de Gmail. Completa las confirmaciones que muestre Google.','Google hisobini ulash variantini tanlang va o‘zingizning Gmail hisobingiz bilan kiring. Google ko‘rsatgan tasdiqlash bosqichlarini bajaring.'),
-       note:five('Google 계정 연동 가입은 시프티의 별도 이메일 본인 인증이 필요하지 않습니다. 이후에도 같은 Google 계정으로 로그인하세요.','Google-linked sign-up does not require Shiftee’s separate email verification. Use the same Google account when you log in again.','关联 Google 注册无需另行进行 Shiftee 邮箱身份验证。以后也请使用同一个 Google 账号登录。','El registro vinculado a Google no requiere la verificación de correo separada de Shiftee. Usa la misma cuenta de Google para volver a entrar.','Google orqali ro‘yxatdan o‘tishda Shiftee’ning alohida email tasdig‘i talab qilinmaydi. Keyingi safar ham aynan shu Google hisobidan foydalaning.'),src:'signup'},
-      {chip:five('가입 확인','Check account','确认账号','Confirmar cuenta','Hisobni tekshiring'),title:five('가입을 마치고 같은 계정으로 로그인해요','Finish registration and sign in','完成注册并登录','Completa el registro e inicia sesión','Ro‘yxatdan o‘tishni tugating va kiring'),
-       body:five('화면에 추가 정보나 동의 항목이 표시되면 확인해 가입을 마치세요. Google 계정을 쓰지 않고 이메일로 가입했다면, 시프티 인증 메일의 본인 인증 버튼까지 눌러야 합니다.','Complete any additional information or consent shown on screen. If you sign up by email instead of Google, you must also use the verification button in Shiftee’s email.','如页面要求补充资料或同意条款，请确认并完成注册。如果不用 Google 而使用邮箱注册，还需要点击 Shiftee 验证邮件中的身份验证按钮。','Completa los datos o consentimientos adicionales que aparezcan. Si te registras por correo en lugar de Google, pulsa también el botón de verificación del mensaje de Shiftee.','Ekrandagi qo‘shimcha ma’lumot yoki rozilik bandlarini yakunlang. Google o‘rniga email bilan ro‘yxatdan o‘tsangiz, Shiftee yuborgan xatdagi tasdiqlash tugmasini ham bosing.'),
-       note:five('이메일 가입은 영문·숫자·특수문자를 조합한 10자 이상 비밀번호가 필요합니다. 인증 메일이 3분 안에 오지 않으면 스팸함을 확인하세요.','Email sign-up requires a password of at least 10 characters combining letters, numbers and special characters. Check spam if the verification email has not arrived within 3 minutes.','邮箱注册需要至少10位、包含字母、数字和特殊符号的密码。如果3分钟内未收到验证邮件，请查看垃圾邮件。','El registro por correo requiere una contraseña de al menos 10 caracteres con letras, números y símbolos. Revisa el correo no deseado si el mensaje no llega en 3 minutos.','Email bilan ro‘yxatdan o‘tishda harf, raqam va maxsus belgilardan iborat kamida 10 belgili parol kerak. Tasdiq xati 3 daqiqada kelmasa, spam papkasini tekshiring.'),src:'signup'},
-      {chip:five('PIPE 합류','Join PIPE','加入 PIPE','Unirse a PIPE','PIPE’ga qo‘shiling'),title:five('가입 후 PIPE 직장에 합류해요','After sign-up, join PIPE','注册后加入 PIPE 公司','Después del registro, únete a PIPE','Ro‘yxatdan o‘tgach PIPE’ga qo‘shiling'),
-       body:five('시프티에 로그인한 뒤 직원용 직장 합류하기에서 관리자가 전달한 합류코드를 입력하세요. 가입만으로 회사 합류가 완료되지는 않습니다.','After signing in, choose the employee Join Company option and enter the invitation code from your administrator. Signing up alone does not join you to the company.','登录后，在员工加入公司选项中输入管理员提供的邀请码。仅注册账号并不代表已加入公司。','Tras iniciar sesión, elige Unirse a una empresa para empleados e introduce el código del administrador. Registrarse no te incorpora automáticamente a la empresa.','Kirgandan so‘ng xodimlar uchun kompaniyaga qo‘shilish bo‘limida administrator bergan taklif kodini kiriting. Faqat hisob yaratish kompaniyaga qo‘shilganingizni anglatmaydi.'),
-       note:five('현재 합류코드는 12자리이며, 기존 6자리 코드는 별도 입력 경로를 이용하세요. 코드나 계정 문제는 상단 CK Park 문의 정보를 확인하세요.','Current invitation codes have 12 digits; older 6-digit codes use a separate option. For code or account questions, use CK Park’s contact details at the top.','当前邀请码为12位，旧6位码请使用单独的输入入口。邀请码或账号有问题时，请查看顶部 CK Park 的联系方式。','Los códigos actuales tienen 12 dígitos; los antiguos de 6 usan otra opción. Para dudas sobre códigos o cuentas, consulta el contacto de CK Park en la parte superior.','Hozirgi taklif kodi 12 xonali; eski 6 xonali kod uchun alohida variant bor. Kod yoki hisob bo‘yicha savollar uchun yuqoridagi CK Park aloqa ma’lumotidan foydalaning.'),src:'join'}
-    ]
-  };
+  "name": {
+    "ko": "처음 시작하기 · 회원가입",
+    "en": "Getting started · Sign up",
+    "zh": "开始使用 · 注册",
+    "es": "Primeros pasos · Registro",
+    "uz": "Boshlash · Ro‘yxatdan o‘tish",
+    "mn": "Эхлэх · Бүртгүүлэх"
+  },
+  "short": {
+    "ko": "회원가입부터",
+    "en": "Sign up first",
+    "zh": "先注册账号",
+    "es": "Crear una cuenta",
+    "uz": "Avval ro‘yxatdan o‘ting",
+    "mn": "Эхлээд бүртгүүлэх"
+  },
+  "sub": {
+    "ko": "Google로 가입 → PIPE 합류",
+    "en": "Google sign-up → join PIPE",
+    "zh": "Google 注册 → 加入 PIPE",
+    "es": "Registro con Google → unirse a PIPE",
+    "uz": "Google orqali → PIPE’ga qo‘shilish",
+    "mn": "Google-ээр бүртгүүлэх → PIPE-д нэгдэх"
+  },
+  "steps": [
+    {
+      "chip": {
+        "ko": "가입 시작",
+        "en": "Start sign-up",
+        "zh": "开始注册",
+        "es": "Iniciar registro",
+        "uz": "Ro‘yxatni boshlash",
+        "mn": "Бүртгэл эхлэх"
+      },
+      "title": {
+        "ko": "1단계 · 앱에서 계정 만들기를 눌러요",
+        "en": "Step 1 · Create an account in the app",
+        "zh": "第1步 · 在应用中创建账号",
+        "es": "Paso 1 · Crea una cuenta en la app",
+        "uz": "1-qadam · Ilovada hisob yarating",
+        "mn": "1-р алхам · Апп дээр бүртгэл үүсгээрэй"
+      },
+      "body": {
+        "ko": "휴대폰에서 시프티 앱을 열고 시작 화면의 계정 만들기를 선택하세요. 앱 버전에 따라 가입하기로 표시될 수 있습니다.",
+        "en": "Open Shiftee on your phone and choose Create Account on the start screen. Some app versions may call it Sign Up.",
+        "zh": "在手机上打开 Shiftee，在开始页面选择创建账号。部分版本可能显示为注册。",
+        "es": "Abre Shiftee en tu móvil y selecciona Crear cuenta en la pantalla inicial. Según la versión puede aparecer como Registrarse.",
+        "uz": "Telefoningizda Shiftee’ni oching va boshlang‘ich oynada Hisob yaratish tugmasini tanlang. Ayrim versiyalarda Ro‘yxatdan o‘tish deb ko‘rsatilishi mumkin.",
+        "mn": "Утсан дээрээ Shiftee-г нээж эхлэх дэлгэцийн бүртгэл үүсгэх товчийг сонгоорой. Аппын хувилбараас хамаарч бүртгүүлэх гэж харагдаж болно."
+      },
+      "note": {
+        "ko": "아래 단계는 모바일 앱에서 Google 계정을 연동해 가입하는 방법입니다. 실제 가입은 시프티 앱에서 진행하세요.",
+        "en": "These steps show mobile sign-up with a Google account. Complete the actual registration in the Shiftee app.",
+        "zh": "以下步骤仅介绍在手机应用中关联 Google 账号注册。请在 Shiftee 应用内完成实际注册。",
+        "es": "Estos pasos muestran el registro móvil con Google. Completa el registro real en la app Shiftee.",
+        "uz": "Bu qadamlar mobil ilovada Google hisobini ulab ro‘yxatdan o‘tishni ko‘rsatadi. Haqiqiy ro‘yxatdan o‘tishni Shiftee ilovasida bajaring.",
+        "mn": "Эдгээр алхам нь утасны апп дээр Google бүртгэл холбож бүртгүүлэхийг харуулна. Бодит бүртгэлээ Shiftee апп дээр хийгээрэй."
+      },
+      "image": "signup",
+      "forceKo": true,
+      "pane": 0,
+      "spot": {
+        "ko": [
+          8,
+          78,
+          84,
+          7
+        ]
+      },
+      "alt": {
+        "ko": "시프티 공식 모바일 시작 화면의 계정 만들기 버튼",
+        "en": "Official Shiftee mobile start screen with Create Account",
+        "zh": "Shiftee 官方手机开始页面的创建账号按钮",
+        "es": "Pantalla móvil oficial de Shiftee con Crear cuenta",
+        "uz": "Shiftee rasmiy mobil boshlang‘ich oynasidagi Hisob yaratish tugmasi",
+        "mn": "Shiftee-ийн албан ёсны утасны эхлэх дэлгэцийн бүртгэл үүсгэх товч"
+      },
+      "imageNote": "imageSignupKo",
+      "src": "signup"
+    },
+    {
+      "chip": {
+        "ko": "Google 선택",
+        "en": "Choose Google",
+        "zh": "选择 Google",
+        "es": "Elegir Google",
+        "uz": "Google’ni tanlash",
+        "mn": "Google сонгох"
+      },
+      "title": {
+        "ko": "Google 연동 아이디로 가입해요",
+        "en": "Sign up with your Google account",
+        "zh": "关联 Google 账号注册",
+        "es": "Regístrate con tu cuenta de Google",
+        "uz": "Google hisobingiz bilan ro‘yxatdan o‘ting",
+        "mn": "Google бүртгэлээ холбож бүртгүүлээрэй"
+      },
+      "body": {
+        "ko": "가입 화면에서 Google 로고 버튼을 누르고, 본인의 Gmail 계정을 선택해 로그인하세요.",
+        "en": "Tap the Google logo on the sign-up screen, then select your own Gmail account and sign in.",
+        "zh": "在注册页面点击 Google 标志按钮，选择本人的 Gmail 账号并登录。",
+        "es": "Pulsa el logotipo de Google en el registro, selecciona tu propia cuenta de Gmail e inicia sesión.",
+        "uz": "Ro‘yxat oynasida Google logotipini bosing, o‘zingizning Gmail hisobingizni tanlang va kiring.",
+        "mn": "Бүртгүүлэх дэлгэцийн Google лого дээр дарж, өөрийн Gmail бүртгэлээ сонгоод нэвтрээрэй."
+      },
+      "note": {
+        "ko": "(name).pipecompany@gmail.com Google 계정으로 진행하고, 이후 시프티에 접속할 때도 같은 계정을 사용하세요.",
+        "en": "Use the Google account (name).pipecompany@gmail.com and keep using that account for future Shiftee logins.",
+        "zh": "请使用 (name).pipecompany@gmail.com Google 账号，以后登录 Shiftee 时也使用同一账号。",
+        "es": "Usa la cuenta de Google (name).pipecompany@gmail.com y la misma cuenta para entrar después en Shiftee.",
+        "uz": "(name).pipecompany@gmail.com Google hisobidan foydalaning. Keyingi safar Shiftee’ga kirishda ham shu hisobni ishlating.",
+        "mn": "(name).pipecompany@gmail.com Google бүртгэлийг ашиглаж, дараа Shiftee-д нэвтрэхдээ мөн тэр бүртгэлээ хэрэглээрэй."
+      },
+      "image": "signup",
+      "forceKo": true,
+      "pane": 1,
+      "crop": "google",
+      "spot": {
+        "ko": [
+          5,
+          6,
+          90,
+          88
+        ]
+      },
+      "alt": {
+        "ko": "시프티 공식 모바일 가입 화면에서 Google 로고 버튼만 확대한 이미지",
+        "en": "Google logo button enlarged from Shiftee’s official mobile sign-up screen",
+        "zh": "从 Shiftee 官方手机注册页面放大的 Google 标志按钮",
+        "es": "Botón de Google ampliado desde el registro móvil oficial de Shiftee",
+        "uz": "Shiftee rasmiy mobil ro‘yxat oynasidan kattalashtirilgan Google tugmasi",
+        "mn": "Shiftee-ийн албан ёсны утасны бүртгэлийн дэлгэцээс томруулсан Google товч"
+      },
+      "src": "signup",
+      "hideImageCaption": true
+    },
+    {
+      "chip": {
+        "ko": "Google 가입 완료",
+        "en": "Finish with Google",
+        "zh": "完成 Google 注册",
+        "es": "Completar con Google",
+        "uz": "Google orqali yakunlash",
+        "mn": "Google-ээр дуусгах"
+      },
+      "title": {
+        "ko": "Google 로그인을 마치고 앱으로 돌아와요",
+        "en": "Finish Google sign-in and return to the app",
+        "zh": "完成 Google 登录后返回应用",
+        "es": "Termina el acceso con Google y vuelve a la app",
+        "uz": "Google orqali kirishni tugatib ilovaga qayting",
+        "mn": "Google нэвтрэлтийг дуусгаад апп руу буцаарай"
+      },
+      "body": {
+        "ko": "Google 화면의 확인 절차를 완료한 뒤 시프티 앱으로 돌아오세요. 가입한 Google 계정으로 시프티에 로그인했는지 확인하세요.",
+        "en": "Complete the confirmation steps on Google, then return to Shiftee. Check that you are signed in with the Google account you used to register.",
+        "zh": "完成 Google 页面上的确认步骤，然后返回 Shiftee。确认已使用注册时的 Google 账号登录。",
+        "es": "Completa las confirmaciones de Google y vuelve a Shiftee. Comprueba que has entrado con la cuenta de Google usada para registrarte.",
+        "uz": "Google oynasidagi tasdiqlashni tugatib Shiftee’ga qayting. Ro‘yxatdan o‘tgan Google hisobingiz bilan kirganingizni tekshiring.",
+        "mn": "Google дэлгэцийн баталгаажуулах алхмуудыг дуусгаад Shiftee рүү буцаарай. Бүртгүүлсэн Google бүртгэлээрээ нэвтэрснээ шалгаарай."
+      },
+      "note": {
+        "ko": "이미지는 Google 선택 예시이며 가입 완료 화면이 아닙니다. 로그인했다면 다음 단계에서 PIPE 직장에 합류하세요.",
+        "en": "The image illustrates choosing Google; it is not a sign-up success screen. Once signed in, continue to join PIPE.",
+        "zh": "图片仅示意选择 Google，并非注册成功页面。登录后请继续下一步加入 PIPE。",
+        "es": "La imagen muestra la selección de Google, no una confirmación de registro. Tras entrar, continúa para unirte a PIPE.",
+        "uz": "Rasm Google tanlash namunasidir, ro‘yxat tugaganini ko‘rsatmaydi. Kirgach, keyingi qadamda PIPE’ga qo‘shiling.",
+        "mn": "Зураг нь Google сонгох жишээ бөгөөд бүртгэл амжилттай дууссан дэлгэц биш. Нэвтэрсний дараа дараагийн алхмаар PIPE-д нэгдээрэй."
+      },
+      "image": "signup",
+      "forceKo": true,
+      "pane": 1,
+      "crop": "google",
+      "spot": {
+        "ko": [
+          5,
+          6,
+          90,
+          88
+        ]
+      },
+      "alt": {
+        "ko": "Google 연동 가입 시 선택하는 공식 Google 버튼 예시",
+        "en": "Official Google button used for linked-account sign-up",
+        "zh": "关联 Google 注册时使用的官方按钮示例",
+        "es": "Ejemplo oficial del botón de registro con Google",
+        "uz": "Google hisobini ulab ro‘yxatdan o‘tish uchun rasmiy tugma namunasi",
+        "mn": "Google бүртгэл холбож бүртгүүлэх албан ёсны товчны жишээ"
+      },
+      "src": "signup",
+      "hideImageCaption": true
+    },
+    {
+      "chip": {
+        "ko": "PIPE 합류",
+        "en": "Join PIPE",
+        "zh": "加入 PIPE",
+        "es": "Unirse a PIPE",
+        "uz": "PIPE’ga qo‘shiling",
+        "mn": "PIPE-д нэгдэх"
+      },
+      "title": {
+        "ko": "같은 Google 계정으로 PIPE에 합류해요",
+        "en": "Join PIPE with the same Google account",
+        "zh": "使用同一 Google 账号加入 PIPE",
+        "es": "Únete a PIPE con la misma cuenta de Google",
+        "uz": "Xuddi shu Google hisobi bilan PIPE’ga qo‘shiling",
+        "mn": "Мөн тэр Google бүртгэлээр PIPE-д нэгдээрэй"
+      },
+      "body": {
+        "ko": "시프티 앱에서 직원용 직장 합류하기를 선택하세요. 관리자가 전달한 합류코드를 입력하고 합류하기를 누르세요.",
+        "en": "In Shiftee, choose Join Company for employees. Enter the invitation code from your administrator and choose Join.",
+        "zh": "在 Shiftee 中选择员工加入公司，输入管理员提供的邀请码，然后点击加入。",
+        "es": "En Shiftee, elige Unirse a una empresa para empleados. Introduce el código del administrador y pulsa Unirse.",
+        "uz": "Shiftee’da xodimlar uchun kompaniyaga qo‘shilishni tanlang. Administrator bergan taklif kodini kiriting va qo‘shilish tugmasini bosing.",
+        "mn": "Shiftee дээр ажилтны Байгууллагад нэгдэх сонголтыг нээгээрэй. Администратороос авсан урилгын кодыг оруулаад нэгдэх товчийг дарна."
+      },
+      "note": {
+        "ko": "공식 이미지는 이전 6자리 코드 화면입니다. 실제로 받은 12자리 코드를 사용하고, 기존 6자리 코드를 받았다면 앱의 별도 경로를 이용하세요. 코드 문의는 상단 CK Park에게 해주세요.",
+        "en": "This official image shows the older 6-digit screen. Use the 12-digit code you actually received; older 6-digit codes use a separate option in the app. Contact CK Park above if needed.",
+        "zh": "官方图片为旧6位码界面。请使用实际收到的12位码；若收到旧6位码，请使用应用中的单独入口。需要帮助请联系顶部的 CK Park。",
+        "es": "La imagen oficial muestra la pantalla antigua de 6 dígitos. Usa el código real de 12 dígitos; los antiguos de 6 tienen una opción aparte en la app. Consulta a CK Park si necesitas ayuda.",
+        "uz": "Rasmiy rasm eski 6 xonali kod oynasidir. Haqiqatan olgan 12 xonali kodni ishlating; eski 6 xonali kod bo‘lsa, ilovadagi alohida variantdan foydalaning. Savollar uchun yuqoridagi CK Park bilan bog‘laning.",
+        "mn": "Албан ёсны зураг нь хуучин 6 оронтой кодын дэлгэц. Бодитоор авсан 12 оронтой кодоо ашиглаарай. Хуучин 6 оронтой код бол аппын тусдаа сонголтоор оруулна. Асуулт гарвал дээрх CK Park-тай холбогдоорой."
+      },
+      "image": "join",
+      "forceKo": true,
+      "pane": 0,
+      "spot": {
+        "ko": [
+          22,
+          52,
+          58,
+          12
+        ]
+      },
+      "alt": {
+        "ko": "시프티 직원 시작 가이드의 공식 모바일 직장 합류 화면",
+        "en": "Official mobile Join Company screenshot from Shiftee’s employee getting-started guide",
+        "zh": "Shiftee 员工开始指南中的官方手机加入公司界面",
+        "es": "Pantalla móvil oficial para unirse a una empresa de la guía de empleados de Shiftee",
+        "uz": "Shiftee xodimlar boshlang‘ich qo‘llanmasidagi rasmiy mobil kompaniyaga qo‘shilish oynasi",
+        "mn": "Shiftee ажилтны эхлэх гарын авлагын албан ёсны утасны байгууллагад нэгдэх дэлгэц"
+      },
+      "imageNote": "imageJoinKo",
+      "src": "staff"
+    }
+  ]
+};
   // Full guide translations use stable content paths; no remote translation service.
   function addTranslations(value, path = '') {
     if (!value || typeof value !== 'object') return;
@@ -222,10 +458,7 @@
     document.querySelector('meta[name="description"]').content = t('training');
     document.querySelectorAll('[data-i18n]').forEach(node => { node.textContent = t(node.dataset.i18n); });
     document.querySelectorAll('[data-label]').forEach(node => { node.setAttribute('aria-label', t(node.dataset.label)); });
-    document.querySelectorAll('[data-lang]').forEach(node => {
-      node.setAttribute('aria-pressed', String(node.dataset.lang === state.language));
-      node.setAttribute('aria-label', t({ko:'languageKo',en:'languageEn',zh:'languageZh',es:'languageEs',uz:'languageUz',mn:'languageMn'}[node.dataset.lang]));
-    });
+    $('language-select').value = state.language;
   }
   function renderFlows() {
     $('flow-list').replaceChildren(...flowOrder.map((id, index) => {
@@ -247,7 +480,10 @@
     $('image-message').textContent = loaded ? '' : t(failed ? 'imageError' : 'imageLoading');
   }
   function renderImage(step) {
-    const isCorrection = ['signup','correction'].includes(state.flow);
+    const hideCaption = step.hideImageCaption === true;
+    document.querySelector('#screen-figure .sample-label').hidden = hideCaption;
+    $('image-note').hidden = hideCaption;
+    const isCorrection = !step.image;
     $('screen-figure').hidden = isCorrection;
     $('request-diagram').hidden = !isCorrection;
     if (isCorrection) {
@@ -260,9 +496,12 @@
     }
     const imageLanguage = step.forceKo || state.language === 'ko' ? 'ko' : 'en';
     const info = images[`${step.image}-${imageLanguage}`];
-    const [left, width] = info.panes[step.pane];
+    const [left, width, top = 0, height = 100] = info.panes[step.pane];
     const frame = $('screen-window');
-    frame.style.setProperty('--pane-ratio', String(info.width * width / 100 / info.height));
+    frame.dataset.crop = step.crop || '';
+    frame.style.setProperty('--pane-ratio', String(info.width * width / (info.height * height)));
+    frame.style.setProperty('--image-height', `${10000 / height}%`);
+    frame.style.setProperty('--image-top', `${-top / height * 100}%`);
     frame.style.setProperty('--image-left', `${-left / width * 100}%`);
     const img = $('app-screen');
     img.alt = local(step.alt);
@@ -272,7 +511,7 @@
     const [x,y,w,h] = step.spot[imageLanguage];
     Object.assign($('spotlight').style, { left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%` });
     $('spot-number').textContent = String(currentIndex() + 1);
-    const notes = [t(step.forceKo ? 'imageKoFallback' : imageLanguage === 'ko' ? 'imageKo' : 'imageEn')];
+    const notes = hideCaption ? [] : [t(step.imageNote || (step.forceKo ? 'imageKoFallback' : imageLanguage === 'ko' ? 'imageKo' : 'imageEn'))];
     if (state.flow === 'clock-out') notes.push(t('beforeOut'));
     $('image-note').textContent = notes.join(' ');
     $('full-image').href = `assets/${info.file}`;
@@ -351,10 +590,11 @@
   }
   $('app-screen').addEventListener('load', imageStatus);
   $('app-screen').addEventListener('error', imageStatus);
-  document.querySelectorAll('[data-lang]').forEach(b => b.addEventListener('click', () => {
-    if (state.language === b.dataset.lang) return;
-    state.language = b.dataset.lang; render(); announce();
-  }));
+  $('language-select').addEventListener('change', event => {
+    const language = event.target.value;
+    if (!['ko','en','zh','es','uz','mn'].includes(language) || state.language === language) return;
+    state.language = language; render(); announce();
+  });
   $('flow-list').addEventListener('click', e => {
     const button = e.target.closest('[data-flow]');
     if (button) navigate(button.dataset.flow, state.steps[button.dataset.flow]);
