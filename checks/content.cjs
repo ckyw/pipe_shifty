@@ -16,12 +16,19 @@ function walk(value){
  if(typeof value.ko==='string'&&typeof value.en==='string'){
    for(const language of ['ko','en','zh','es','uz','mn']){
      assert.equal(typeof value[language],'string');assert.ok(value[language].trim());
+     assert.doesNotMatch(value[language],/\bQR\b/i,'No QR instructions in any language');
      if(language!=='ko')assert.equal(/[가-힣]/.test(value[language]),false,`${language}: ${value[language]}`);
    }
    count++;
  }else Object.values(value).forEach(walk);
 }
 walk(ctx.data);
+assert.deepEqual(Array.from(ctx.data.flowOrder),['signup','clock-in','clock-out','correction']);
+assert.equal(ctx.data.flows.qr,undefined);
+assert.deepEqual(Array.from(ctx.data.issues,x=>x.id),['gps','wifi','schedule','missing','pending','offsite','break','web','automation']);
+assert.match(ctx.data.issues[2].summary.es,/turno/);
+assert.match(ctx.data.issues[3].summary.mn,/бүртгэл/);
+assert.match(ctx.data.issues[8].title.uz,/Ilovani/);
 assert.equal(ctx.data.flowOrder[0],'signup');
 assert.equal(ctx.data.flows.signup.steps.length,4);
 assert.match(ctx.data.flows.signup.steps[1].body.en,/Google.*Gmail/);

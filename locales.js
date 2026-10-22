@@ -282,12 +282,6 @@ window.PIPE_GUIDE_TRANSLATIONS = {
     "uz": "Bu joy tanlashning koreyscha rasmi. Inglizcha maqolaning o‘rta rasmi rejasiz ishga tegishli, shuning uchun bu qadamda koreyscha namuna ishlatiladi.",
     "mn": "Энэ алхамд газар сонгох солонгос дэлгэцийг ашиглав. Англи нийтлэлийн дунд зураг хуваарьгүй ажлыг харуулдаг тул солонгос жишээг ашиглаж байна."
   },
-  "copy.qrExample": {
-    "zh": "图中的二维码仅为官方帮助示例，请勿用于实际打卡。",
-    "es": "El QR mostrado es un ejemplo oficial. No lo escanees para registrar asistencia.",
-    "uz": "Rasmdagi QR rasmiy yordam namunasi. Uni davomat uchun skanerlamang.",
-    "mn": "Зураг дахь QR нь албан ёсны тусламжийн жишээ. Бодит ирц бүртгэхэд бүү уншуулаарай."
-  },
   "copy.beforeOut": {
     "zh": "图片为下班打卡前的界面，并非下班完成界面。",
     "es": "La imagen es anterior al registro de salida; no muestra una salida completada.",
@@ -469,10 +463,10 @@ window.PIPE_GUIDE_TRANSLATIONS = {
     "mn": "Ирц бүртгэх газраа шалгаад тохируулсан баталгаажуулалтыг хийнэ. Координат, WiFi хоёуланг идэвхжүүлсэн бол аль нэг нь баталгаажихад хангалттай."
   },
   "flows.clock-in.steps.1.note": {
-    "zh": "PIPE 的验证方式和地点尚未确认。如果需要二维码，请查看二维码指南。",
-    "es": "Los métodos y lugares de PIPE están pendientes. Si se requiere QR, consulta su guía.",
-    "uz": "PIPE tekshirish usullari va joylari hali aniqlanmagan. QR kerak bo‘lsa, QR qo‘llanmasini ko‘ring.",
-    "mn": "PIPE-ийн баталгаажуулах арга, газрыг хараахан эцэслээгүй. QR шаардлагатай бол QR зааврыг үзээрэй."
+    "zh": "请确认管理员提供的打卡地点和验证方式。",
+    "es": "Comprueba los lugares y métodos de verificación indicados por tu administrador.",
+    "uz": "Administrator ko‘rsatgan ish joylari va tekshirish usullarini aniqlashtiring.",
+    "mn": "Администратороос заасан ирц бүртгэх газар, баталгаажуулах аргыг шалгаарай."
   },
   "flows.clock-in.steps.1.alt": {
     "zh": "韩语打卡地点选择界面，底部为上班打卡按钮",
@@ -509,114 +503,6 @@ window.PIPE_GUIDE_TRANSLATIONS = {
     "es": "Tarjeta tras la entrada con la hora y el botón de salida",
     "uz": "Ish boshlangach vaqt va Clock Out tugmasi ko‘rsatilgan karta",
     "mn": "Ажил эхэлсний дараах карт: эхэлсэн цаг болон Clock Out товч"
-  },
-  "flows.qr.name": {
-    "zh": "学习二维码验证",
-    "es": "Aprender la verificación QR",
-    "uz": "QR tekshiruvini o‘rganish",
-    "mn": "QR баталгаажуулалтыг сурах"
-  },
-  "flows.qr.short": {
-    "zh": "需要二维码时",
-    "es": "Cuando se requiere QR",
-    "uz": "QR kerak bo‘lganda",
-    "mn": "QR шаардлагатай үед"
-  },
-  "flows.qr.sub": {
-    "zh": "地点 → 扫码 → 验证",
-    "es": "Lugar → escanear → verificar",
-    "uz": "Joy → skanerlash → tekshirish",
-    "mn": "Газар → QR уншуулах → баталгаажуулах"
-  },
-  "flows.qr.steps.0.title": {
-    "zh": "确认此地点是否需要二维码",
-    "es": "Comprueba si el lugar requiere QR",
-    "uz": "Bu joyda QR kerakligini tekshiring",
-    "mn": "Энэ газарт QR шаардлагатай эсэхийг шалгаарай"
-  },
-  "flows.qr.steps.0.chip": {
-    "zh": "确认地点",
-    "es": "Ver lugar",
-    "uz": "Joyni ko‘rish",
-    "mn": "Газар шалгах"
-  },
-  "flows.qr.steps.0.body": {
-    "zh": "如果公司要求在此地点使用二维码，请在 Shiftee 中确认地点并选择上班打卡。",
-    "es": "Si la empresa exige QR en ese lugar, compruébalo en Shiftee y elige Entrada.",
-    "uz": "Kompaniya bu joyda QR talab qilsa, Shiftee’da joyni tekshiring va Clock In ni tanlang.",
-    "mn": "Танай байгууллага энэ газарт QR шаарддаг бол Shiftee дээр газраа шалгаж Clock In сонгоорой."
-  },
-  "flows.qr.steps.0.note": {
-    "zh": "并非所有公司都使用二维码，请向 PIPE 确认是否使用及放置地点。",
-    "es": "No todas las empresas usan QR. Confirma con PIPE si se usa y dónde está.",
-    "uz": "Hamma kompaniya QR ishlatmaydi. PIPE’dan qo‘llanishi va qayerda joylashganini so‘rang.",
-    "mn": "Бүх байгууллага QR ашигладаггүй. PIPE-ээс ашиглах эсэх, хаана байршуулсныг тодруулаарай."
-  },
-  "flows.qr.steps.0.alt": {
-    "zh": "扫码前的英语官方界面，底部为上班打卡按钮",
-    "es": "Pantalla oficial inglesa antes del QR, con el botón de entrada abajo",
-    "uz": "QR skanerlashdan oldingi inglizcha rasmiy oyna, pastda Clock In tugmasi",
-    "mn": "QR уншуулахын өмнөх албан ёсны англи дэлгэц; доод хэсэгт Clock In товч байна"
-  },
-  "flows.qr.steps.1.title": {
-    "zh": "用应用相机扫描现场二维码",
-    "es": "Escanea el QR del lugar en la app",
-    "uz": "Ilova kamerasi bilan joydagi QR ni skanerlang",
-    "mn": "Аппын камераар ажлын байрны QR-ийг уншуулаарай"
-  },
-  "flows.qr.steps.1.chip": {
-    "zh": "扫描二维码",
-    "es": "Escanear QR",
-    "uz": "QR skanerlash",
-    "mn": "QR уншуулах"
-  },
-  "flows.qr.steps.1.body": {
-    "zh": "允许 Shiftee 访问相机，然后扫描工作现场的二维码。",
-    "es": "Permite el acceso a la cámara y escanea el QR de tu lugar de trabajo.",
-    "uz": "Shiftee kamerasiga ruxsat bering va ish joyidagi QR kodni skanerlang.",
-    "mn": "Shiftee-д камерын эрх өгч, ажлын байранд байрлуулсан QR кодыг уншуулаарай."
-  },
-  "flows.qr.steps.1.note": {
-    "zh": "本指南不会打开相机。请使用公司的现场二维码，而非图中的示例。",
-    "es": "Esta guía no abre la cámara. Usa el QR de la empresa, no el ejemplo de la imagen.",
-    "uz": "Bu qo‘llanma kamerani ochmaydi. Rasmdagi namunani emas, kompaniya bergan QR ni ishlating.",
-    "mn": "Энэ гарын авлага камер нээхгүй. Зурагт байгаа жишээг биш, байгууллагаас өгсөн газар дээрх QR-ийг ашиглаарай."
-  },
-  "flows.qr.steps.1.alt": {
-    "zh": "官方英语示例：相机识别框内的二维码标牌",
-    "es": "Ejemplo oficial inglés con un cartel QR dentro del marco de cámara",
-    "uz": "Kamera doirasidagi QR belgisi ko‘rsatilgan inglizcha rasmiy namuna",
-    "mn": "Камерын хүрээн дотор QR тэмдэглэгээ харагдах албан ёсны англи жишээ"
-  },
-  "flows.qr.steps.2.title": {
-    "zh": "完成补充验证并确认记录",
-    "es": "Completa la verificación y revisa el registro",
-    "uz": "Qo‘shimcha tekshiruvni tugatib, yozuvni ko‘ring",
-    "mn": "Нэмэлт баталгаажуулалт хийж бүртгэлээ шалгаарай"
-  },
-  "flows.qr.steps.2.chip": {
-    "zh": "补充验证与确认",
-    "es": "Verificar y comprobar",
-    "uz": "Tekshirish va ko‘rish",
-    "mn": "Баталгаажуулах, шалгах"
-  },
-  "flows.qr.steps.2.body": {
-    "zh": "扫码后还需完成公司设置的坐标或 WiFi 验证，然后在实际应用中确认上班时间。",
-    "es": "Después del QR, completa la verificación adicional por coordenadas o WiFi y comprueba la hora de entrada en la app real.",
-    "uz": "QR dan keyin kompaniya belgilagan koordinata yoki WiFi tekshiruvini bajaring. So‘ng haqiqiy ilovada boshlash vaqtini ko‘ring.",
-    "mn": "QR уншуулсны дараа байгууллагын тохируулсан координат эсвэл WiFi-ийн нэмэлт баталгаажуулалтыг дуусгана. Дараа нь бодит апп дээр ажил эхэлсэн цагаа шалгаарай."
-  },
-  "flows.qr.steps.2.note": {
-    "zh": "仅扫码不代表打卡完成。验证失败或等待审批时，请再次确认状态。",
-    "es": "Escanear no completa la entrada. Si falla la verificación o hay una aprobación pendiente, revisa el estado.",
-    "uz": "Faqat QR skanerlash ish boshlashni yakunlamaydi. Tekshiruv o‘tmasa yoki tasdiq kutilsa, holatni tekshiring.",
-    "mn": "QR уншуулснаар бүртгэл дуусахгүй. Баталгаажуулалт амжилтгүй эсвэл зөвшөөрөл хүлээж байвал төлөвийг дахин шалгаарай."
-  },
-  "flows.qr.steps.2.alt": {
-    "zh": "英语示例：上班打卡成功提示和上班时间",
-    "es": "Ejemplo inglés con aviso de entrada correcta y su hora",
-    "uz": "Ish boshlash muvaffaqiyati va vaqti ko‘rsatilgan inglizcha namuna",
-    "mn": "Ажил эхэлсэн бүртгэл амжилттай болсон мэдэгдэл болон цагийг харуулсан англи жишээ"
   },
   "flows.clock-out.name": {
     "zh": "学习下班打卡",
@@ -931,270 +817,234 @@ window.PIPE_GUIDE_TRANSLATIONS = {
     "mn": "Сүлжээ эсвэл радиусыг таамаглаж болохгүй. Амжилтгүй хэвээр бол байгууллагатай холбогдоорой."
   },
   "issues.2.name": {
-    "zh": "二维码相机或扫描无法使用",
-    "es": "La cámara o el QR no funcionan",
-    "uz": "QR kamerasi yoki skanerlash ishlamayapti",
-    "mn": "QR камер эсвэл уншуулах үйлдэл ажиллахгүй"
-  },
-  "issues.2.title": {
-    "zh": "检查相机与补充验证",
-    "es": "Revisa cámara y verificación adicional",
-    "uz": "Kamera va qo‘shimcha tekshiruvni ko‘ring",
-    "mn": "Камер болон нэмэлт баталгаажуулалтыг шалгаарай"
-  },
-  "issues.2.summary": {
-    "zh": "扫描后还需完成公司设置的坐标或 WiFi 验证。",
-    "es": "Tras el QR se verifica por coordenadas o WiFi, según la empresa.",
-    "uz": "QR dan keyin kompaniya belgilagan koordinata yoki WiFi tekshiruvi kerak.",
-    "mn": "QR уншуулсны дараа байгууллагын тохируулсан координат эсвэл WiFi баталгаажуулалт хийгдэнэ."
-  },
-  "issues.2.actions.0": {
-    "zh": "检查 Shiftee 的相机权限。",
-    "es": "Comprueba el permiso de cámara de Shiftee.",
-    "uz": "Shiftee ilovasi uchun kamera ruxsatini tekshiring.",
-    "mn": "Shiftee аппын камерын эрхийг шалгаарай."
-  },
-  "issues.2.actions.1": {
-    "zh": "在应用内扫描现场二维码，不要扫描本指南示例。",
-    "es": "Escanea el QR del lugar en la app, no el ejemplo de la guía.",
-    "uz": "Ilovada joydagi QR ni skanerlang, qo‘llanmadagi namunani emas.",
-    "mn": "Энэ гарын авлагын жишээг биш, ажлын байрны QR-ийг апп дотроос уншуулаарай."
-  },
-  "issues.2.actions.2": {
-    "zh": "扫描后仍失败时，请检查补充验证和申请状态，再联系公司。",
-    "es": "Si falla después de escanear, revisa la verificación adicional y el estado de la solicitud y consulta a la empresa.",
-    "uz": "Skanerlashdan keyin ham o‘tmasa, qo‘shimcha tekshiruv va so‘rov holatini ko‘rib, kompaniyadan so‘rang.",
-    "mn": "Уншуулсны дараа ч амжилтгүй бол нэмэлт баталгаажуулалт болон хүсэлтийн төлөвийг шалгаад байгууллагаас асуугаарай."
-  },
-  "issues.3.name": {
     "zh": "没有今天的班次",
     "es": "No aparece el turno de hoy",
     "uz": "Bugungi smena yo‘q",
     "mn": "Өнөөдрийн ээлж харагдахгүй"
   },
-  "issues.3.title": {
+  "issues.2.title": {
     "zh": "确认班次与无排班打卡权限",
     "es": "Confirma el turno y el permiso sin turno",
     "uz": "Smena va rejasiz ish ruxsatini aniqlashtiring",
     "mn": "Ээлж болон хуваарьгүй ажиллах эрхийг тодруулаарай"
   },
-  "issues.3.summary": {
+  "issues.2.summary": {
     "zh": "没有班次并不总能直接打卡。无排班打卡取决于公司设置。",
     "es": "No tener turno no siempre permite entrar. El registro sin turno depende de la empresa.",
     "uz": "Smena yo‘qligi har doim ishni boshlash mumkin degani emas. Rejasiz ish kompaniya sozlamalariga bog‘liq.",
     "mn": "Ээлж байхгүй үед шууд ажил эхэлснийг бүртгэх боломж үргэлж байдаггүй. Хуваарьгүй ажил нь байгууллагын тохиргооноос хамаарна."
   },
-  "issues.3.actions.0": {
+  "issues.2.actions.0": {
     "zh": "确认公司、团队和日期。",
     "es": "Comprueba empresa, equipo y fecha.",
     "uz": "Kompaniya, jamoa va sanani tekshiring.",
     "mn": "Байгууллага, баг, огноог шалгаарай."
   },
-  "issues.3.actions.1": {
+  "issues.2.actions.1": {
     "zh": "向 PIPE 确认是否允许无排班打卡及如何处理缺失班次。",
     "es": "Pregunta a PIPE si permite registrar sin turno y cómo resolver un turno ausente.",
     "uz": "PIPE’dan rejasiz ishga ruxsat va yo‘q smenani qanday hal qilishni so‘rang.",
     "mn": "Хуваарьгүй ажиллахыг зөвшөөрдөг эсэх, ээлж дутууг хэрхэн шийдэхийг PIPE-ээс асуугаарай."
   },
-  "issues.3.actions.2": {
+  "issues.2.actions.2": {
     "zh": "无排班记录可能需关联计划班次，请避免重复创建班次或记录。",
     "es": "Puede ser necesario vincular el registro a un turno previsto. Evita turnos o registros duplicados.",
     "uz": "Rejasiz yozuvni rejalangan smenaga ulash kerak bo‘lishi mumkin. Takroriy smena yoki yozuv yaratmang.",
     "mn": "Хуваарьгүй бүртгэлийг төлөвлөсөн ээлжтэй холбох шаардлагатай байж болно. Ээлж, бүртгэлийг давхар үүсгэж болохгүй."
   },
-  "issues.4.name": {
+  "issues.3.name": {
     "zh": "忘记上班或下班打卡",
     "es": "Olvidé registrar entrada o salida",
     "uz": "Boshlash yoki tugatishni qayd etishni unutdim",
     "mn": "Ажил эхлэх эсвэл дуусах цагаа бүртгэхээ мартсан"
   },
-  "issues.4.title": {
+  "issues.3.title": {
     "zh": "根据是否已有记录选择申请",
     "es": "Elige según exista o no un registro",
     "uz": "Yozuv bor-yo‘qligiga qarab so‘rovni tanlang",
     "mn": "Бүртгэл байгаа эсэхээр хүсэлтээ сонгоорой"
   },
-  "issues.4.summary": {
+  "issues.3.summary": {
     "zh": "完全没有上班记录时申请新建。已有记录或仅缺下班时申请修改。",
     "es": "Si no hay entrada, solicita crearla. Si existe un registro o solo falta la salida, solicita corregirlo.",
     "uz": "Boshlash umuman bo‘lmasa, yaratishni so‘rang. Yozuv bor yoki faqat tugash yetishmasa, tuzatishni so‘rang.",
     "mn": "Эхэлсэн бүртгэл огт байхгүй бол үүсгэх хүсэлт. Бүртгэл байгаа эсвэл зөвхөн дуусах цаг дутуу бол засах хүсэлт сонгоорой."
   },
-  "issues.4.actions.0": {
+  "issues.3.actions.0": {
     "zh": "先在考勤中确认日期和已有记录。",
     "es": "Primero revisa fecha y registro en Asistencia.",
     "uz": "Avval Davomatda sana va mavjud yozuvni tekshiring.",
     "mn": "Эхлээд Ирц хэсэгт огноо болон одоо байгаа бүртгэлийг шалгаарай."
   },
-  "issues.4.actions.1": {
+  "issues.3.actions.1": {
     "zh": "在上方记录缺失指南中选择相应类型。",
     "es": "Elige el tipo adecuado en la guía de registros ausentes.",
     "uz": "Yuqoridagi yo‘q yozuv qo‘llanmasida mos turini tanlang.",
     "mn": "Дээрх дутуу бүртгэлийн заавраас тохирох төрлийг сонгоорой."
   },
-  "issues.4.actions.2": {
+  "issues.3.actions.2": {
     "zh": "向公司确认申请功能、审批人和期限。发送与批准是两回事。",
     "es": "Confirma disponibilidad, aprobador y plazo. Enviar no es aprobar.",
     "uz": "So‘rov mavjudligi, tasdiqlovchi va muddatni kompaniyadan so‘rang. Yuborish va tasdiq boshqa-boshqa.",
     "mn": "Хүсэлт ашиглах боломж, зөвшөөрөл олгогч, хугацааг байгууллагаас тодруулаарай. Илгээх болон зөвшөөрөх нь тусдаа."
   },
-  "issues.5.name": {
+  "issues.4.name": {
     "zh": "申请一直待审批",
     "es": "Mi solicitud sigue pendiente",
     "uz": "So‘rovim hali kutilmoqda",
     "mn": "Миний хүсэлт хүлээгдэж байна"
   },
-  "issues.5.title": {
+  "issues.4.title": {
     "zh": "已发送不等于已批准",
     "es": "Enviado no significa aprobado",
     "uz": "Yuborilgan tasdiqlangan degani emas",
     "mn": "Илгээсэн хүсэлт нь зөвшөөрөгдсөн хүсэлт биш"
   },
-  "issues.5.summary": {
+  "issues.4.summary": {
     "zh": "在我的申请中查看状态和原因，批准后再检查实际记录。",
     "es": "Revisa estado y motivo en Mis solicitudes y el registro real tras la aprobación.",
     "uz": "Mening so‘rovlarimda holat-sababni, tasdiqdan keyin esa haqiqiy yozuvni tekshiring.",
     "mn": "Миний хүсэлт хэсгээс төлөв, шалтгааныг шалгаж, зөвшөөрсний дараа бодит бүртгэлээ шалгаарай."
   },
-  "issues.5.actions.0": {
+  "issues.4.actions.0": {
     "zh": "不要将待审批申请当成已完成记录。",
     "es": "No trates una solicitud pendiente como un registro aprobado.",
     "uz": "Kutilayotgan so‘rovni tasdiqlangan yozuv deb hisoblamang.",
     "mn": "Хүлээгдэж буй хүсэлтийг зөвшөөрөгдсөн бүртгэл гэж үзэж болохгүй."
   },
-  "issues.5.actions.1": {
+  "issues.4.actions.1": {
     "zh": "被拒或长时间待审批时请联系公司。本指南无法承诺审批时间。",
     "es": "Pregunta a la empresa por rechazos o retrasos. Esta guía no promete un plazo de aprobación.",
     "uz": "Rad etish yoki kechikish sababini kompaniyadan so‘rang. Bu qo‘llanma tasdiq vaqtini va’da qilmaydi.",
     "mn": "Татгалзсан шалтгаан, саатлыг байгууллагаас асуугаарай. Энэ гарын авлага зөвшөөрөх хугацааг амлахгүй."
   },
-  "issues.6.name": {
+  "issues.5.name": {
     "zh": "需要在工作地外打卡",
     "es": "Necesito registrar fuera del lugar",
     "uz": "Ish joyidan tashqarida qayd etish kerak",
     "mn": "Ажлын байрнаас гадуур бүртгүүлэх хэрэгтэй"
   },
-  "issues.6.title": {
+  "issues.5.title": {
     "zh": "工作地外申请需公司允许",
     "es": "Las solicitudes externas requieren permiso",
     "uz": "Tashqaridan so‘rov uchun kompaniya ruxsati kerak",
     "mn": "Гадуур бүртгэх хүсэлтэд байгууллагын зөвшөөрөл хэрэгтэй"
   },
-  "issues.6.summary": {
+  "issues.5.summary": {
     "zh": "只有公司开启时才可使用工作地外打卡申请。",
     "es": "Las solicitudes externas solo están disponibles si la empresa las activa.",
     "uz": "Ish joyidan tashqarida boshlash-tugatish so‘rovi faqat kompaniya yoqqanda mavjud.",
     "mn": "Ажлын байрнаас гадуур ирц бүртгэх хүсэлт нь байгууллага идэвхжүүлсэн үед л боломжтой."
   },
-  "issues.6.actions.0": {
+  "issues.5.actions.0": {
     "zh": "提交前请确认 PIPE 是否允许及审批人。",
     "es": "Confirma con PIPE el permiso y el aprobador antes de enviar.",
     "uz": "Yuborishdan oldin PIPE ruxsati va tasdiqlovchini aniqlashtiring.",
     "mn": "Илгээхээс өмнө PIPE-ийн зөвшөөрөл болон зөвшөөрөл олгогчийг тодруулаарай."
   },
-  "issues.6.actions.1": {
+  "issues.5.actions.1": {
     "zh": "普通坐标验证后会丢弃位置；工作地外申请可能向审批人显示提交时的位置。",
     "es": "La verificación normal descarta la ubicación. Una solicitud externa puede mostrar al aprobador la ubicación del envío.",
     "uz": "Oddiy koordinata tekshiruvidan keyin joylashuv o‘chiriladi. Tashqi so‘rov esa yuborilgan joyni tasdiqlovchiga ko‘rsatishi mumkin.",
     "mn": "Ердийн координат баталгаажуулалтын дараа байршлыг устгадаг. Харин гадуур бүртгэх хүсэлтийн үед илгээсэн байршил зөвшөөрөл олгогчид харагдаж болно."
   },
-  "issues.6.actions.2": {
+  "issues.5.actions.2": {
     "zh": "工作地外申请不等于实时追踪。请区分待审批和已批准。",
     "es": "Una solicitud externa no es seguimiento en directo. Distingue pendiente y aprobado.",
     "uz": "Tashqi so‘rov real vaqtda kuzatish emas. Kutish va tasdiqni ajrating.",
     "mn": "Гадуур бүртгэх хүсэлт нь байршлыг шууд хянах үйлдэл биш. Хүлээгдэж буй болон зөвшөөрөгдсөн төлөвийг ялгаарай."
   },
-  "issues.7.name": {
+  "issues.6.name": {
     "zh": "找不到休息开始或结束按钮",
     "es": "No encuentro los botones de descanso",
     "uz": "Tanaffus tugmalari yo‘q",
     "mn": "Завсарлага эхлэх, дуусах товч алга"
   },
-  "issues.7.title": {
+  "issues.6.title": {
     "zh": "手动休息为条件性功能",
     "es": "El descanso manual tiene condiciones",
     "uz": "Qo‘lda tanaffus shartli funksiyadir",
     "mn": "Гараар завсарлага бүртгэх нь нөхцөлтэй боломж"
   },
-  "issues.7.summary": {
+  "issues.6.summary": {
     "zh": "自动休息和手动休息不同。PIPE 的方式和规则尚未确认。",
     "es": "El descanso automático y manual son distintos. El método y las reglas de PIPE están pendientes.",
     "uz": "Avtomatik va qo‘lda tanaffus farq qiladi. PIPE usuli va qoidalari hali tasdiqlanmagan.",
     "mn": "Автомат болон гараар бүртгэх завсарлага өөр. PIPE-ийн арга, дүрмийг хараахан эцэслээгүй."
   },
-  "issues.7.actions.0": {
+  "issues.6.actions.0": {
     "zh": "若公司启用手动休息，可在手机端上班打卡后、工作期间使用。",
     "es": "Si la empresa activa descansos manuales, se usan en el móvil tras la entrada y durante el trabajo.",
     "uz": "Kompaniya qo‘lda tanaffusni yoqsa, ish boshlangach ish davomida mobil ilovada foydalanish mumkin.",
     "mn": "Байгууллага гараар завсарлага бүртгэхийг идэвхжүүлбэл ажил эхэлсний дараа, ажиллаж байх үед утсаар ашиглаж болно."
   },
-  "issues.7.actions.1": {
+  "issues.6.actions.1": {
     "zh": "手动休息须在打卡地点半径内开始和结束。请向公司确认设置。",
     "es": "Los descansos manuales deben empezar y acabar dentro del radio del lugar. Confirma los ajustes con la empresa.",
     "uz": "Qo‘lda tanaffusni belgilangan ish joyi radiusida boshlash va tugatish kerak. Sozlamani kompaniyadan aniqlashtiring.",
     "mn": "Гараар бүртгэх завсарлагыг ирц бүртгэх газрын радиус дотор эхлүүлж, дуусгана. Бодит тохиргоог байгууллагаас тодруулаарай."
   },
-  "issues.7.actions.2": {
+  "issues.6.actions.2": {
     "zh": "没有按钮并不能证明已自动计算休息时间。",
     "es": "Que no haya botón no demuestra que se aplique un descanso automático.",
     "uz": "Tugma yo‘qligi tanaffus avtomatik qo‘llanganini isbotlamaydi.",
     "mn": "Товч байхгүй нь автомат завсарлага тооцогдсоны баталгаа биш."
   },
-  "issues.8.name": {
+  "issues.7.name": {
     "zh": "可以在电脑网页端打卡吗？",
     "es": "¿Puedo registrar desde la web?",
     "uz": "Veb orqali qayd etish mumkinmi?",
     "mn": "Вэбээр ирцээ бүртгэж болох уу?"
   },
-  "issues.8.title": {
+  "issues.7.title": {
     "zh": "网页打卡取决于公司设置和套餐",
     "es": "La asistencia web depende de ajustes y plan",
     "uz": "Veb davomat sozlama va tarifga bog‘liq",
     "mn": "Вэб ирц нь тохиргоо болон төлөвлөгөөнөөс хамаарна"
   },
-  "issues.8.summary": {
+  "issues.7.summary": {
     "zh": "官方说明：网页打卡需 Standard 或以上套餐、公司开启，且仅支持 WiFi 验证。",
     "es": "La ayuda oficial exige un plan Standard o superior y activación de la empresa; solo admite WiFi.",
     "uz": "Rasmiy yordamga ko‘ra veb davomat uchun Standard yoki yuqori tarif, kompaniya ruxsati va faqat WiFi tekshiruvi kerak.",
     "mn": "Албан ёсны тусламжаар вэб ирцэд Standard буюу түүнээс дээш төлөвлөгөө, байгууллагын идэвхжүүлэлт шаардлагатай бөгөөд зөвхөн WiFi баталгаажуулалт дэмжинэ."
   },
-  "issues.8.actions.0": {
+  "issues.7.actions.0": {
     "zh": "确认 PIPE 是否允许网页打卡及登记的 WiFi。",
     "es": "Confirma si PIPE permite la asistencia web y qué WiFi está registrada.",
     "uz": "PIPE veb davomatga ruxsat berishi va qaysi WiFi ro‘yxatda ekanini tekshiring.",
     "mn": "PIPE вэб ирцийг зөвшөөрдөг эсэх, ямар WiFi бүртгэлтэйг тодруулаарай."
   },
-  "issues.8.actions.1": {
+  "issues.7.actions.1": {
     "zh": "本 HTML 指南不是 Shiftee 网页应用，也不会发送任何记录。",
     "es": "Esta guía HTML no es la app web de Shiftee y no envía registros.",
     "uz": "Bu HTML qo‘llanma Shiftee veb ilovasi emas va hech qanday yozuv yubormaydi.",
     "mn": "Энэ HTML гарын авлага нь Shiftee вэб апп биш бөгөөд ямар ч бүртгэл илгээхгүй."
   },
-  "issues.9.name": {
+  "issues.8.name": {
     "zh": "应用自动打开就算上班了吗？",
     "es": "Si la app se abre sola, ¿ya entré?",
     "uz": "Ilova avtomatik ochilsa, ish boshlandimi?",
     "mn": "Апп автоматаар нээгдвэл ажил эхэлсэн үү?"
   },
-  "issues.9.title": {
+  "issues.8.title": {
     "zh": "自动打开应用与考勤记录不同",
     "es": "Abrir la app no es registrar asistencia",
     "uz": "Ilovani ochish va davomatni qayd etish boshqa-boshqa",
     "mn": "Апп нээх нь ирц бүртгэхээс өөр"
   },
-  "issues.9.summary": {
+  "issues.8.summary": {
     "zh": "官方自动化功能帮助手机打开 Shiftee，不会代替您记录上下班。",
     "es": "La automatización oficial ayuda a abrir Shiftee. No registra la asistencia por ti.",
     "uz": "Rasmiy avtomatlashtirish telefonda Shiftee’ni ochishga yordam beradi. Sizning o‘rningizga davomat qayd etmaydi.",
     "mn": "Албан ёсны автоматжуулалт нь утсанд Shiftee аппыг нээхэд тусална. Таны өмнөөс ирц бүртгэхгүй."
   },
-  "issues.9.actions.0": {
+  "issues.8.actions.0": {
     "zh": "应用打开后，请自行完成上下班打卡。",
     "es": "Al abrirse la app, completa tú los pasos de entrada o salida.",
     "uz": "Ilova ochilgach, boshlash yoki tugatish qadamlarini o‘zingiz bajaring.",
     "mn": "Апп нээгдэхэд ажил эхлэх, дуусах бүртгэлийн алхмуудыг өөрөө хийгээрэй."
   },
-  "issues.9.actions.1": {
+  "issues.8.actions.1": {
     "zh": "在应用中确认实际上下班时间已保存。",
     "es": "Comprueba que se guardaron las horas reales en la app.",
     "uz": "Ilovada haqiqiy boshlash-tugatish vaqtlari saqlanganini tekshiring.",
@@ -1237,10 +1087,10 @@ window.PIPE_GUIDE_TRANSLATIONS = {
     "mn": "Илгээх нь хүсэлт өгөх үйлдэл. Хүлээгдэж буй, зөвшөөрөгдсөн, татгалзсан төлөвийг шалгаж, зөвшөөрсний дараа бодит бүртгэлийг шалгаарай. Боломж идэвхтэй гэж таамаглах эсвэл баталгаажаагүй зөвшөөрөл олгогчийг сонгож болохгүй."
   },
   "policies.0": {
-    "zh": "打卡地点、验证方式、坐标半径、登记 WiFi 和二维码放置",
-    "es": "Lugares, métodos, radio, WiFi registrada y ubicación del QR",
-    "uz": "Ish joylari, tekshirish usullari, radius, ro‘yxatdagi WiFi va QR joylashuvi",
-    "mn": "Ирц бүртгэх газар, баталгаажуулах арга, координатын радиус, бүртгэлтэй WiFi, QR байршуулалт"
+    "zh": "打卡地点、验证方式、坐标半径和登记 WiFi",
+    "es": "Lugares, métodos, radio y WiFi registrada",
+    "uz": "Ish joylari, tekshirish usullari, radius va ro‘yxatdagi WiFi",
+    "mn": "Ирц бүртгэх газар, баталгаажуулах арга, координатын радиус, бүртгэлтэй WiFi"
   },
   "policies.1": {
     "zh": "班次安排、工作时间及跨午夜处理",

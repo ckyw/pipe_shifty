@@ -40,7 +40,7 @@ const errors = [], external = [], consoleErrors = [];
     assert.match(await page.locator('.contact-banner').innerText(),/문의하기.*CK Park.*카카오톡 ID.*cestck/);
     record('Signup is first and contact is visible','Signup default, six native language buttons and requested KakaoTalk contact');
 
-    const sizes = { signup: 4, 'clock-in': 3, qr: 3, 'clock-out': 2, correction: 3 };
+    const sizes = { signup: 4, 'clock-in': 3, 'clock-out': 2, correction: 3 };
     for (const language of ['ko', 'en', 'zh', 'es', 'uz', 'mn']) {
       await page.locator(`#lang-${language}`).click();
       for (const [flow, count] of Object.entries(sizes)) {
@@ -52,6 +52,8 @@ const errors = [], external = [], consoleErrors = [];
           assert.equal(await page.locator('#next').isDisabled(), index === count - 1);
           assert.equal(await page.locator('[aria-current="step"].step-chip').getAttribute('data-step'), String(index));
           assert.ok((await page.locator('#step-description').innerText()).length > 10);
+          assert.equal(await page.locator('[data-flow]').count(),4);
+          assert.doesNotMatch(await page.locator('body').innerText(),/\bQR\b/i);
           if (!['signup','correction'].includes(flow)) {
             await page.waitForFunction(() => { const image = document.getElementById('app-screen'); return image.complete && image.naturalWidth > 0; });
             assert.equal(await page.locator('#app-screen').getAttribute('lang'), language === 'zh' ? 'zh-Hans' : language);
@@ -104,8 +106,8 @@ const errors = [], external = [], consoleErrors = [];
         assert.match(await page.locator('#issue-source').getAttribute('href'), /^https:\/\/shiftee.io\/ko\/help\/article\//);
         if (language === 'en') assert.equal(/[가-힣]/.test(await page.locator('#issue-answer').innerText()), false);
       }
-      assert.equal(titles.size, 10);
-      record(`${language} troubleshooting`, '10 distinct situations, actions and official sources');
+      assert.equal(titles.size, 9);
+      record(`${language} troubleshooting`, '9 distinct situations, actions and official sources');
     }
 
     await page.locator('#lang-en').click();
@@ -126,14 +128,14 @@ const errors = [], external = [], consoleErrors = [];
     assert.equal(new URL(page.url()).hash, correctionHash);
     record('Language switches preserve step, correction type, help choice and focus', 'KO ↔ EN on correction step 2');
 
-    await page.locator('[data-flow="qr"]').click();
+    await page.locator('[data-flow="clock-in"]').click();
     await page.locator('#next').click();
     await page.locator('[data-flow="clock-out"]').click();
-    await page.locator('[data-flow="qr"]').click();
+    await page.locator('[data-flow="clock-in"]').click();
     assert.equal(await page.locator('#progress').getAttribute('aria-valuenow'), '2');
     await page.locator('.help-jump').click();
     await page.waitForFunction(() => document.activeElement.id === 'help-heading');
-    assert.equal(await page.locator('[data-flow="qr"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('[data-flow="clock-in"]').getAttribute('aria-pressed'), 'true');
     assert.equal(await page.locator('#progress').getAttribute('aria-valuenow'), '2');
     await page.goBack();
     await page.waitForFunction(() => document.activeElement.id === 'step-title');
@@ -141,9 +143,9 @@ const errors = [], external = [], consoleErrors = [];
     await page.locator('.skip-link').focus();
     await page.keyboard.press('Enter');
     await page.waitForFunction(() => document.activeElement.id === 'step-title');
-    assert.equal(await page.locator('[data-flow="qr"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('[data-flow="clock-in"]').getAttribute('aria-pressed'), 'true');
     assert.equal(await page.locator('#progress').getAttribute('aria-valuenow'), '2');
-    record('Section anchors preserve progress and focus', 'Help, browser back and skip link keep QR step 2');
+    record('Section anchors preserve progress and focus', 'Help, browser back and skip link keep clock-in step 2');
 
     await page.goto(base);
     await page.locator('#next').click();
@@ -156,7 +158,7 @@ const errors = [], external = [], consoleErrors = [];
     await page.waitForFunction(() => document.getElementById('progress').getAttribute('aria-valuenow') === '3');
     record('Browser back and forward', 'Step history restored without changing English');
 
-    await page.goto(`${base}#qr/1`);
+    await page.goto(`${base}#clock-in/1`);
     // A hash-only navigation keeps focus; reload for the first-Tab entry check.
     await page.reload();
     await page.keyboard.press('Tab');
@@ -229,9 +231,16 @@ const errors = [], external = [], consoleErrors = [];
     }
     record('Responsive layout', '320/390/768/1440 px, six languages and all flows: no horizontal overflow');
 
-    await page.goto(`${base}#qr/99`);
-    await page.waitForFunction(() => location.hash === '#qr/2');
-    assert.equal(new URL(page.url()).hash,'#qr/2');
+    for(const legacy of ['#qr/0','#qr/1','#qr/2','#qr/99']){
+      await page.goto(`${base}${legacy}`);
+      await page.waitForFunction(()=>location.hash==='#signup/0');
+      assert.equal(await page.locator('[data-flow="qr"]').count(),0);
+      assert.match(await page.locator('#step-source').getAttribute('href'),/signUp$/);
+    }
+    record('Removed QR links redirect to signup','Legacy QR steps and out-of-range link all redirect to signup');
+    await page.goto(`${base}#clock-in/99`);
+    await page.waitForFunction(() => location.hash === '#clock-in/2');
+    assert.equal(new URL(page.url()).hash,'#clock-in/2');
     await page.goto(`${base}#not-a-route`);
     await page.waitForFunction(() => location.hash === '#signup/0');
     assert.equal(new URL(page.url()).hash,'#signup/0');
@@ -255,6 +264,8 @@ const errors = [], external = [], consoleErrors = [];
     record('Image failure in both languages', 'Text and official link survive and next step still works');
     await failedPage.close();
 
+    const qrRequests=await page.evaluate(()=>performance.getEntriesByType('resource').filter(r=>/qr-(ko|en)\.png/.test(r.name)).map(r=>r.name));
+    assert.deepEqual(qrRequests,[]);
     assert.deepEqual(errors,[]);
     assert.deepEqual(consoleErrors,[]);
     assert.deepEqual(external,[]);

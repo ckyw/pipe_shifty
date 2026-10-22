@@ -50,7 +50,6 @@
     imageKo: pair('한국어 공식 화면의 일부입니다. 시각·장소·일정은 PIPE 정보가 아닌 예시입니다.', 'This is part of an official Korean screenshot. Times, places and shifts are examples, not PIPE settings.'),
     imageEn: pair('영어 공식 화면의 일부입니다. 시각·장소·일정은 예시입니다.', 'This is part of an official English screenshot. Times, places and shifts are examples, not PIPE settings.'),
     imageKoFallback: pair('한국어 공식 장소 선택 화면입니다. 화면 속 장소는 예시입니다.', 'Korean screenshot: select your timeclock area. The English article’s middle image shows On-Call, so this guide uses the Korean example for this step.'),
-    qrExample: pair('이미지의 QR은 공식 도움말 예시입니다. 실제 출퇴근용으로 스캔하지 마세요.', 'The QR code shown is an official help example. Do not scan it for attendance.'),
     beforeOut: pair('이 이미지는 퇴근 전 화면입니다. 실제 퇴근 완료 화면을 보여주는 것은 아닙니다.', 'This image shows the screen before clock-out, not a completed clock-out.'),
     sourceKo: pair('공식 도움말 (새 탭)', 'Official help in Korean (new tab)'),
     sourceEn: pair('공식 영어 도움말 (새 탭)', 'Official help in English (new tab)'),
@@ -74,7 +73,7 @@
     breaks: { slug: 'attendanceBreakTime', title: pair('휴게시간 기록하기', 'Record break time') },
     automation: { slug: 'howToUseShortcutsForClockInAndOut', title: pair('앱 자동화', 'App-opening automation') },
   };
-  const flowOrder = ['signup', 'clock-in', 'qr', 'clock-out', 'correction'];
+  const flowOrder = ['signup', 'clock-in', 'clock-out', 'correction'];
   const flows = {
     'clock-in': {
       name: pair('출근 기록 알아보기', 'Learn to clock in'), short: pair('출근하기', 'Clock in'), sub: pair('일정 → 인증 → 확인', 'Shift → verify → check'),
@@ -85,29 +84,12 @@
           image: 'clock', pane: 0, spot: { ko: [24,35,69,7], en: [26,27,69,7] }, alt: pair('시프티 홈의 오늘 근무 카드와 출근하기 버튼', 'Shiftee Home with today’s work card and the Clock In button'), src: 'clock' },
         { title: pair('장소와 인증을 확인해요', 'Check the place and verification'), chip: pair('장소·인증', 'Verify place'),
           body: pair('출근할 장소를 확인하고 회사에 설정된 인증을 진행하세요. 좌표와 WiFi를 함께 설정했다면 둘 중 하나만 인증되어도 가능합니다.', 'Check your timeclock area and use its configured verification. If both coordinates and WiFi are enabled, either one can verify attendance.'),
-          note: pair('PIPE가 사용할 인증 수단과 장소는 미확정입니다. QR이 필요한 경우에는 QR 안내를 따로 확인하세요.', 'PIPE’s verification methods and areas are not yet confirmed. If QR is required, use the QR guide.'),
+          note: pair('관리자가 안내한 출퇴근 장소와 인증 방식을 확인하세요.', 'Check the timeclock areas and verification methods provided by your administrator.'),
           image: 'clock', forceKo: true, pane: 1, spot: { ko: [4,88,92,7], en: [4,88,92,7] }, alt: pair('한국어 출근 장소 선택 화면과 하단 출근하기 버튼', 'Korean timeclock-area selection screen; the bottom button is Clock In'), src: 'auth' },
         { title: pair('출근 시각이 남았는지 확인해요', 'Look for your clock-in time'), chip: pair('기록 확인', 'Check record'),
           body: pair('출근 후에는 버튼이 퇴근하기로 바뀌고 출근 시각이 표시됩니다. 실제 앱에서 기록을 확인하세요.', 'After clock-in, the button changes to Clock Out and a clock-in time appears. Check that record in the real app.'),
           note: pair('앱이 열리거나 버튼을 눌렀다는 것만으로 기록되었다고 판단하지 마세요. 기록이 없으면 누락 안내를 확인하세요.', 'Opening the app or tapping a button is not proof of a saved record. If it is missing, see the missing-record help.'),
           image: 'clock', pane: 2, spot: { ko: [6,44,88,7], en: [6,35,88,7] }, alt: pair('출근 후 현재 근무중 카드의 출근 시각과 퇴근하기 버튼', 'After clock-in: the Currently Working card shows a clock-in time and Clock Out'), src: 'clock' },
-      ],
-    },
-    qr: {
-      name: pair('QR 인증 알아보기', 'Learn QR verification'), short: pair('QR이 필요할 때', 'When QR is required'), sub: pair('장소 → 스캔 → 추가 인증', 'Place → scan → verify'),
-      steps: [
-        { title: pair('QR이 필요한 장소인지 확인해요', 'Check whether this area requires QR'), chip: pair('장소 확인', 'Check area'),
-          body: pair('회사에서 QR 인증을 설정한 장소라면, 앱에서 출근할 장소를 확인한 뒤 출근하기를 선택하세요.', 'If your company requires QR at this area, check the area in Shiftee and choose Clock In.'),
-          note: pair('모든 회사가 QR을 쓰는 것은 아닙니다. PIPE의 QR 사용 여부와 비치 장소는 관리자 확인이 필요해요.', 'QR is not required by every company. Ask PIPE to confirm whether and where it will be used.'),
-          image: 'qr', pane: 0, spot: { ko: [4,87,92,8], en: [4,88,92,8] }, alt: pair('QR 인증 전 장소·일정을 확인하고 출근하기를 누르는 한국어 앱 화면', 'Official English app screen before QR scanning, with Clock In at the bottom'), src: 'clock' },
-        { title: pair('앱 카메라로 현장 QR을 읽어요', 'Scan the on-site QR in the app'), chip: pair('QR 스캔', 'Scan QR'),
-          body: pair('시프티 앱의 카메라 접근을 허용하고 현장에 비치된 QR을 스캔하세요.', 'Allow camera access for Shiftee and scan the QR code displayed at your workplace.'),
-          note: pair('이 가이드는 카메라를 열지 않습니다. 이미지 속 예시 QR이 아닌 회사가 안내한 현장 QR을 사용하세요.', 'This guide does not open your camera. Use the on-site code provided by your company, not the example shown here.'),
-          image: 'qr', pane: 1, spot: { ko: [13,31,74,36], en: [13,31,74,36] }, alt: pair('카메라 인식 테두리 안에 QR 인증 안내물이 있는 공식 한국어 예시', 'Official English example of a QR sign inside the camera scanning frame'), src: 'clock' },
-        { title: pair('추가 인증과 기록까지 확인해요', 'Complete verification and check the record'), chip: pair('추가 인증·확인', 'Verify & check'),
-          body: pair('QR 스캔 후 회사가 설정한 좌표 또는 WiFi 추가 인증을 완료해야 합니다. 이후 실제 앱에서 출근 시각을 확인하세요.', 'After scanning, complete the additional coordinates or WiFi verification configured by your company. Then check your clock-in time in the real app.'),
-          note: pair('QR을 읽었다고 출근이 끝난 것은 아닙니다. 추가 인증 실패나 승인 대기 상태라면 기록을 다시 확인해 주세요.', 'Scanning alone does not finish clock-in. If verification fails or approval is pending, check the status again.'),
-          image: 'qr', pane: 2, spot: { ko: [5,44,90,7], en: [5,41,90,7] }, alt: pair('QR 인증 후 출근 성공 알림과 출근 시각이 보이는 한국어 앱 예시', 'English app example showing a successful clock-in notification and clock-in time'), src: 'auth' },
       ],
     },
     'clock-out': {
@@ -142,7 +124,6 @@
   const issues = [
     { id: 'gps', name: pair('위치가 다르거나 인증이 안 돼요', 'Location is wrong / verification fails'), title: pair('먼저 위치 정확도를 확인해요', 'Check location accuracy first'), summary: pair('장소 안에 있는데 위치 인증이 실패한다면 기기 설정과 앱 지도를 확인해 주세요.', 'If you are at the area but location verification fails, check your device settings and the map in Shiftee.'), actions: [pair('시프티의 앱 사용 중 위치 접근과 정확한 위치 설정을 확인하세요.', 'Check location permission while using Shiftee and the precise-location setting.'),pair('지도에서 내 위치 버튼을 눌러 위치를 갱신하세요. 기종별 위치 정확도 설정도 확인하세요.', 'Refresh using the map’s current-location button and check your device’s accuracy settings.'),pair('계속 실패하면 실제 지점·인증 실패 상황을 회사 담당자에게 알려주세요. 반경은 임의로 정하지 않습니다.', 'If it still fails, tell your company the area and what failed. This guide does not set a distance radius.')], src: 'gps' },
     { id: 'wifi', name: pair('WiFi가 연결됐는데 인증이 안 돼요', 'WiFi is connected but verification fails'), title: pair('회사에 등록된 WiFi인지 확인해요', 'Check whether this is the registered WiFi'), summary: pair('인터넷 연결과 시프티에 등록된 WiFi 인증은 다를 수 있어요.', 'An internet connection may not be the WiFi registered for Shiftee verification.'), actions: [pair('회사에서 안내한 WiFi에 연결했는지 확인하세요. PIPE의 등록 네트워크는 확인이 필요합니다.', 'Check that you are on the WiFi provided by the company. PIPE’s registered network is unconfirmed.'),pair('좌표와 WiFi를 모두 설정한 장소는 둘 중 하나가 인증되면 됩니다.', 'If the area has both coordinates and WiFi configured, either method can verify attendance.'),pair('임의 네트워크나 반경을 기준으로 판단하지 말고 계속 실패하면 담당자에게 문의하세요.', 'Do not assume a network or radius. Contact your company if verification still fails.')], src: 'auth' },
-    { id: 'qr', name: pair('QR 카메라가 안 열리거나 스캔이 안 돼요', 'QR camera or scanning does not work'), title: pair('카메라와 추가 인증을 따로 확인해요', 'Check the camera and additional verification'), summary: pair('QR 인증은 스캔 후 회사가 설정한 좌표 또는 WiFi 추가 인증이 함께 진행됩니다.', 'QR scanning is followed by the coordinates or WiFi verification configured by the company.'), actions: [pair('시프티 앱의 카메라 접근 허용 여부를 확인하세요.', 'Check camera permission for the Shiftee app.'),pair('공식 예시 이미지가 아닌 현장 QR을 앱 카메라로 읽으세요.', 'Scan the on-site QR in the app, not an example in this guide.'),pair('스캔 뒤에도 안 되면 추가 인증과 요청 상태를 확인하고 회사 담당자에게 문의하세요.', 'If it still fails after scanning, check additional verification and request status, then ask your company.')], src: 'clock' },
     { id: 'schedule', name: pair('오늘 근무일정이 없어요', 'Today’s shift is missing'), title: pair('일정과 무일정 허용 여부를 확인해요', 'Confirm the shift and On-Call permission'), summary: pair('일정이 없다고 항상 출근할 수 있는 것은 아닙니다. 무일정 출퇴근은 회사 설정에 따라 달라요.', 'A missing shift does not always allow clock-in. On-Call attendance depends on company settings.'), actions: [pair('맞는 회사·조직/지점·날짜를 확인하세요.', 'Check the company, team and date.'),pair('PIPE의 무일정 허용 여부와 일정 누락 처리 방법을 담당자에게 확인하세요.', 'Ask PIPE whether On-Call is allowed and how a missing shift should be handled.'),pair('무일정으로 기록하면 예정 일정과 연결이 필요할 수 있으니, 임의로 새 일정과 기록을 중복 생성하지 마세요.', 'On-Call records may need linking to a planned shift. Avoid creating duplicate shifts or records.')], src: 'oncall' },
     { id: 'missing', name: pair('출근·퇴근 기록을 빠뜨렸어요', 'I missed a clock-in or clock-out'), title: pair('기존 기록 유무로 요청을 나눠요', 'Choose the request by whether a record exists'), summary: pair('출근 기록이 아예 없으면 생성 요청, 기존 기록이 있거나 퇴근만 누락했으면 수정 요청을 확인하세요.', 'If there is no clock-in record, look at a create request. If a record exists or only clock-out is missing, look at an edit request.'), actions: [pair('먼저 출퇴근기록에서 날짜와 기존 기록을 확인하세요.', 'First check the date and existing record in Attendance.'),pair('위의 기록 누락·정정 안내에서 해당 유형을 선택하세요.', 'Choose the matching type in the missing-record guide above.'),pair('요청 기능·승인권자·제출 기한은 회사에 확인하세요. 요청 전송과 승인 완료는 별개입니다.', 'Confirm request availability, approver and deadline with your company. Sending is separate from approval.')], src: 'edit' },
     { id: 'pending', name: pair('요청을 보냈는데 아직 대기 중이에요', 'My request is still pending'), title: pair('요청 전송과 승인 완료는 달라요', 'A sent request is not an approved request'), summary: pair('내 요청에서 상태와 사유를 확인하고 승인 후 실제 기록에 반영됐는지도 확인하세요.', 'Check the status and reason in My Requests, then check the actual record after approval.'), actions: [pair('승인 대기 중인 요청을 완료된 기록으로 생각하지 마세요.', 'Do not treat a pending request as an approved record.'),pair('거절 사유나 계속 대기하는 상황은 회사 담당자에게 문의하세요. 승인 시점을 임의로 약속할 수 없습니다.', 'Ask your company about rejection reasons or delays. This guide cannot promise an approval time.')], src: 'create' },
@@ -158,7 +139,7 @@
     { title: pair('요청과 기록 구분하기', 'Tell requests and records apart'), body: pair('보내기는 요청 제출입니다. 승인 대기·승인·거절 상태를 확인하고, 승인 후 실제 기록까지 확인하세요. 회사에 없는 기능이나 정해지지 않은 승인자를 임의로 선택하지 마세요.', 'Sending submits a request. Check whether it is pending, approved or rejected, then check the actual record after approval. Do not assume a feature is enabled or choose an unconfirmed approver.'), src: 'create' },
   ];
   const policies = [
-    pair('출퇴근 장소·인증 수단·좌표 반경·등록 WiFi·QR 비치', 'Timeclock areas, methods, coordinate radius, registered WiFi and QR placement'),
+    pair('출퇴근 장소·인증 수단·좌표 반경·등록 WiFi', 'Timeclock areas, methods, coordinate radius and registered WiFi'),
     pair('근무일정·운영 시각·자정 넘는 근무 처리', 'Shift schedules, working times and overnight-work handling'),
     pair('휴게의 자동/수동 방식과 시작·종료 기준', 'Automatic or manual breaks and start/end rules'),
     pair('무일정 근무·웹 출퇴근 허용 여부와 플랜', 'On-Call and web attendance permissions and plan'),
@@ -168,8 +149,6 @@
   const images = {
     'clock-ko': { file: 'clock-ko.png', width: 3892, height: 2250, panes: [[0,28.7],[35.65,28.7],[71.3,28.7]] },
     'clock-en': { file: 'clock-en.png', width: 3953, height: 2250, panes: [[0,27.7],[35.8,28.2],[71.7,28.3]] },
-    'qr-ko': { file: 'qr-ko.png', width: 4012, height: 2250, panes: [[0,27.8],[36.1,27.8],[72.2,27.8]] },
-    'qr-en': { file: 'qr-en.png', width: 4012, height: 2250, panes: [[0,27.8],[36.1,27.8],[72.2,27.8]] },
   };
 
   const five = (ko, en, zh, es, uz) => ({ko,en,zh,es,uz});
@@ -214,7 +193,7 @@
   }
   addTranslations({copy,source,flows,correctionSteps,issues,ready,policies});
 
-  const state = { language: 'ko', flow: 'signup', steps: { signup: 0, 'clock-in': 0, qr: 0, 'clock-out': 0, correction: 0 }, issue: 'gps', requestKind: 'create' };
+  const state = { language: 'ko', flow: 'signup', steps: { signup: 0, 'clock-in': 0, 'clock-out': 0, correction: 0 }, issue: 'gps', requestKind: 'create' };
   const $ = id => document.getElementById(id);
   const local = value => value[state.language];
   const t = key => local(copy[key]);
@@ -294,7 +273,6 @@
     Object.assign($('spotlight').style, { left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%` });
     $('spot-number').textContent = String(currentIndex() + 1);
     const notes = [t(step.forceKo ? 'imageKoFallback' : imageLanguage === 'ko' ? 'imageKo' : 'imageEn')];
-    if (step.image === 'qr') notes.push(t('qrExample'));
     if (state.flow === 'clock-out') notes.push(t('beforeOut'));
     $('image-note').textContent = notes.join(' ');
     $('full-image').href = `assets/${info.file}`;
@@ -358,7 +336,7 @@
   }
   function readHash() {
     if (['#guide', '#help'].includes(window.location.hash)) return;
-    const match = /^#(signup|clock-in|qr|clock-out|correction)\/(\d{1,2})$/.exec(window.location.hash);
+    const match = /^#(signup|clock-in|clock-out|correction)\/(\d{1,2})$/.exec(window.location.hash);
     state.flow = match ? match[1] : 'signup';
     const parsed = match ? Number(match[2]) : 0;
     state.steps[state.flow] = Math.min(Math.max(0, parsed), stepsFor(state.flow).length - 1);
