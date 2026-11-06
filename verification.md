@@ -110,3 +110,16 @@
 ## 2026-10-22 배포 전 재확인
 
 최종 확인본의 콘텐츠 220개 항목 × 6개 언어, JS/CJS 4개 구문 검사, `git diff --check`를 재실행하여 통과했습니다. 브라우저 50개 그룹 PASS·1개 UNCONFIRMED는 바로 앞 최종 문구 변경본의 실행 기록이며 코드 변경 없이 사용합니다. GitHub 로그인은 저장소 소유자 `ckyw`, Pages 게시 원본은 `main /`로 확인했습니다. 사용자 승인에 따라 커밋·push·Pages 배포를 진행하며 공개 확인 결과는 배포 후 보고합니다.
+
+## 2026-11-06 출퇴근기록 수정 요청 이미지
+
+- `node checks/content.cjs`: 222개 항목 × 6개 언어 PASS. JS/CJS 구문 검사 및 `git diff --check` PASS.
+- 로컬 Chrome: **52개 그룹 PASS, 기존 도움말 select의 네이티브 키보드 조작 1개 UNCONFIRMED**. `#correction/1` 직접 진입, 수정·생성 전환, 6개 언어의 이미지·대체 텍스트·출처, 320/390/768/1440px 레이아웃과 이미지 로드 실패 시 안내를 확인했습니다.
+- 원본과 로컬 PNG 일치 확인. `output/playwright/correction-edit-390.png`와 `correction-edit-1440.png`에서 날짜·출퇴근 시각이 보이는지 시각 확인했습니다. 전체 결과는 `output/playwright/shiftee-results.json`입니다.
+- 실기기, 독립 리뷰, GitHub CI 및 공개 배포는 이번 검증에 포함되지 않았습니다.
+
+## 2026-11-06 앱 화면 언어 전환
+
+- `node checks/content.cjs`: 문구 221개 × 6개 언어, 모든 이미지 단계의 한·영 원본 및 영어 Google 표시 범위 PASS. JS/CJS 구문 검사 및 `git diff --check` PASS.
+- 로컬 Chrome: **52개 그룹 PASS, 기존 도움말 드롭다운의 네이티브 키보드 조작 1개 미확인**. 모든 이미지 단계에서 한국어는 한국어 PNG, 나머지 5개 언어는 영어 PNG를 로드하고 원본 링크도 같은 파일을 가리키는지 확인했습니다. 수정 요청에서 언어를 바꿔도 단계와 요청 유형이 유지됩니다.
+- 영어 가입 시작·Google·합류·출근 장소 캡처와 390px 수정 화면(`output/playwright/correction-edit-390-en.png`)을 시각 확인했습니다. 추가한 PNG 4개는 시프티 다운로드 원본과 일치합니다. 실제 휴대폰, 독립 리뷰, GitHub CI 및 공개 배포는 미실행입니다.

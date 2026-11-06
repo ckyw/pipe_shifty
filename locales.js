@@ -276,12 +276,6 @@ window.PIPE_GUIDE_TRANSLATIONS = {
     "uz": "Bu ingliz tilidagi rasmiy skrinshotning bir qismi. Vaqt, joy va smenalar namuna bo‘lib, PIPE sozlamalari emas.",
     "mn": "Англи хэл дээрх албан ёсны дэлгэцийн хэсэг. Цаг, газар, ээлж нь PIPE-ийн тохиргоо биш, жишээ юм."
   },
-  "copy.imageKoFallback": {
-    "zh": "此步使用韩语地点选择截图。英语帮助的中间图是无排班打卡，因此改用韩语示例。",
-    "es": "Esta captura de selección de lugar está en coreano. La imagen central inglesa muestra trabajo sin turno, por eso usamos el ejemplo coreano.",
-    "uz": "Bu joy tanlashning koreyscha rasmi. Inglizcha maqolaning o‘rta rasmi rejasiz ishga tegishli, shuning uchun bu qadamda koreyscha namuna ishlatiladi.",
-    "mn": "Энэ алхамд газар сонгох солонгос дэлгэцийг ашиглав. Англи нийтлэлийн дунд зураг хуваарьгүй ажлыг харуулдаг тул солонгос жишээг ашиглаж байна."
-  },
   "copy.beforeOut": {
     "zh": "图片为下班打卡前的界面，并非下班完成界面。",
     "es": "La imagen es anterior al registro de salida; no muestra una salida completada.",
@@ -469,10 +463,10 @@ window.PIPE_GUIDE_TRANSLATIONS = {
     "mn": "Администратороос заасан ирц бүртгэх газар, баталгаажуулах аргыг шалгаарай."
   },
   "flows.clock-in.steps.1.alt": {
-    "zh": "韩语打卡地点选择界面，底部为上班打卡按钮",
-    "es": "Pantalla coreana de selección de lugar; abajo está el botón de entrada",
-    "uz": "Joy tanlashning koreyscha oynasi; pastda Clock In tugmasi",
-    "mn": "Газар сонгох солонгос дэлгэц; доод товч нь Clock In"
+    "zh": "打卡地点选择界面，底部为上班打卡按钮",
+    "es": "Pantalla de selección de lugar; abajo está el botón de entrada",
+    "uz": "Joy tanlash oynasi; pastda Clock In tugmasi",
+    "mn": "Газар сонгох дэлгэц; доод товч нь Clock In"
   },
   "flows.clock-in.steps.2.title": {
     "zh": "确认已显示上班时间",

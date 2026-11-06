@@ -49,7 +49,14 @@
     imageError: pair('이미지를 불러오지 못했어요. 단계 설명을 읽거나 공식 도움말을 열어주세요.', 'The image could not load. Read the step instructions or open the official help.'),
     imageKo: pair('한국어 공식 화면의 일부입니다. 시각·장소·일정은 PIPE 정보가 아닌 예시입니다.', 'This is part of an official Korean screenshot. Times, places and shifts are examples, not PIPE settings.'),
     imageEn: pair('영어 공식 화면의 일부입니다. 시각·장소·일정은 예시입니다.', 'This is part of an official English screenshot. Times, places and shifts are examples, not PIPE settings.'),
-    imageKoFallback: pair('한국어 공식 장소 선택 화면입니다. 화면 속 장소는 예시입니다.', 'Korean screenshot: select your timeclock area. The English article’s middle image shows On-Call, so this guide uses the Korean example for this step.'),
+    imageEdit: {
+      ko: '시프티 공식 한국어 앱 화면입니다. 날짜와 시각은 예시이며, 사유 입력과 보내기 화면은 원본 전체 이미지에서 볼 수 있어요.',
+      en: 'Official Shiftee app screenshot in English. Dates and times are examples. Open the full image to see the reason field and Send button.',
+      zh: '这是 Shiftee 官方英语应用截图，日期和时间仅为示例。打开完整原图可查看原因输入栏和发送按钮。',
+      es: 'Captura oficial de Shiftee en inglés. La fecha y las horas son ejemplos. Abre la imagen completa para ver el campo del motivo y el botón Enviar.',
+      uz: 'Shiftee ilovasining ingliz tilidagi rasmiy skrinshoti. Sana va vaqtlar misol tariqasida berilgan. Sabab maydoni va Yuborish tugmasini to‘liq rasmda ko‘ring.',
+      mn: 'Shiftee аппын англи хэл дээрх албан ёсны дэлгэцийн зураг. Огноо, цаг нь жишээ. Шалтгаан оруулах талбар болон Илгээх товчийг бүтэн зургаас харна уу.',
+    },
     beforeOut: pair('이 이미지는 퇴근 전 화면입니다. 실제 퇴근 완료 화면을 보여주는 것은 아닙니다.', 'This image shows the screen before clock-out, not a completed clock-out.'),
     sourceKo: pair('공식 도움말 (새 탭)', 'Official help in Korean (new tab)'),
     sourceEn: pair('공식 영어 도움말 (새 탭)', 'Official help in English (new tab)'),
@@ -85,7 +92,7 @@
         { title: pair('장소와 인증을 확인해요', 'Check the place and verification'), chip: pair('장소·인증', 'Verify place'),
           body: pair('출근할 장소를 확인하고 회사에 설정된 인증을 진행하세요. 좌표와 WiFi를 함께 설정했다면 둘 중 하나만 인증되어도 가능합니다.', 'Check your timeclock area and use its configured verification. If both coordinates and WiFi are enabled, either one can verify attendance.'),
           note: pair('관리자가 안내한 출퇴근 장소와 인증 방식을 확인하세요.', 'Check the timeclock areas and verification methods provided by your administrator.'),
-          image: 'clock', forceKo: true, pane: 1, spot: { ko: [4,88,92,7], en: [4,88,92,7] }, alt: pair('한국어 출근 장소 선택 화면과 하단 출근하기 버튼', 'Korean timeclock-area selection screen; the bottom button is Clock In'), src: 'auth' },
+          image: 'clock-area', pane: 0, spot: { ko: [4,88,92,7], en: [4,88,92,7] }, alt: pair('출근 장소 선택 화면과 하단 출근하기 버튼', 'Timeclock-area selection screen; the bottom button is Clock In'), src: 'auth' },
         { title: pair('출근 시각이 남았는지 확인해요', 'Look for your clock-in time'), chip: pair('기록 확인', 'Check record'),
           body: pair('출근 후에는 버튼이 퇴근하기로 바뀌고 출근 시각이 표시됩니다. 실제 앱에서 기록을 확인하세요.', 'After clock-in, the button changes to Clock Out and a clock-in time appears. Check that record in the real app.'),
           note: pair('앱이 열리거나 버튼을 눌렀다는 것만으로 기록되었다고 판단하지 마세요. 기록이 없으면 누락 안내를 확인하세요.', 'Opening the app or tapping a button is not proof of a saved record. If it is missing, see the missing-record help.'),
@@ -116,7 +123,17 @@
     ],
     edit: [
       { title: pair('기존 기록이 있으면 수정 요청이에요', 'Existing record? Use an edit request'), chip: pair('유형 확인', 'Choose type'), body: pair('출근·퇴근 시각이 틀렸거나 출근 후 퇴근만 누락했다면 기존 출퇴근기록의 수정 요청을 확인하세요.', 'If a time is wrong, or clock-in exists but clock-out is missing, look at an edit request for the existing attendance record.'), note: pair('기록 자체가 없으면 생성 요청 대상입니다. 수정 요청도 회사 설정과 플랜에 따라 사용할 수 있어요.', 'If no attendance record exists, use a create request. Edit requests also depend on company settings and plan.'), src: 'edit' },
-      { title: pair('수정할 날짜·시각·사유를 확인해요', 'Check the date, corrected times and reason'), chip: pair('수정 준비', 'Prepare edit'), body: pair('앱 요청 탭에서 출퇴근기록 요청 → 수정을 선택하고 날짜와 출근·퇴근 시각을 확인하세요. 승인에 필요한 사유를 적고 보내세요.', 'In Request, choose an attendance request, then edit. Check the date and clock-in/out times, add the required reason and send in the app.'), note: pair('임의 시각을 넣지 말고 실제 근무를 기준으로 확인하세요. PIPE 승인자·제출 기한은 회사에 확인해야 합니다.', 'Check against the actual work performed. Confirm PIPE’s approver and submission deadline with the company.'), src: 'edit' },
+      { title: pair('수정할 날짜·시각·사유를 확인해요', 'Check the date, corrected times and reason'), chip: pair('수정 준비', 'Prepare edit'), body: pair('앱 요청 탭에서 출퇴근기록 요청 → 수정을 선택하고 날짜와 출근·퇴근 시각을 확인하세요. 승인에 필요한 사유를 적고 보내세요.', 'In Request, choose an attendance request, then edit. Check the date and clock-in/out times, add the required reason and send in the app.'), note: pair('임의 시각을 넣지 말고 실제 근무를 기준으로 확인하세요. PIPE 승인자·제출 기한은 회사에 확인해야 합니다.', 'Check against the actual work performed. Confirm PIPE’s approver and submission deadline with the company.'), src: 'edit',
+        image: 'edit-attendance', pane: 0, crop: 'edit-attendance', imageNote: 'imageEdit', spot: { shared: [3,62,93,36] },
+        alt: {
+          ko: '출퇴근기록 수정 요청 앱 화면에서 날짜와 수정할 출근·퇴근 시각을 확인하는 예시',
+          en: 'Attendance edit request screen showing the date and the clock-in and clock-out times to correct',
+          zh: '考勤修改申请页面，显示日期及要修改的上班和下班时间',
+          es: 'Pantalla de solicitud de corrección de asistencia con la fecha y las horas de entrada y salida que se van a corregir',
+          uz: 'Davomatni tahrirlash so‘rovi ekrani: sana va tuzatiladigan ish boshlanishi hamda tugash vaqtlari',
+          mn: 'Ирцийн бүртгэл засах хүсэлтийн дэлгэц: огноо болон засах ажил эхэлсэн, дууссан цаг',
+        },
+      },
       { title: pair('승인 후 실제 수정 내역까지 확인해요', 'After approval, check the actual edit'), chip: pair('상태 확인', 'Check status'), body: pair('내 요청에서 승인 대기·승인·거절 상태를 구분하세요. 승인 후 출퇴근기록을 열어 날짜와 수정된 시간을 확인하세요.', 'Distinguish pending, approved and rejected in My Requests. After approval, open Attendance and check the date and corrected times.'), note: pair('요청을 보냈다는 안내만으로 수정이 완료되었다고 판단하지 마세요. 반영이 안 되면 회사 담당자에게 상태를 알려주세요.', 'A sent request is not a completed edit. If the change is not reflected, tell your company the request status.'), src: 'edit' },
     ],
   };
@@ -146,10 +163,17 @@
     pair('생성·수정·근무지 외 요청 허용, 승인권자·사유·제출 기한', 'Create/edit/offsite request permissions, approvers, reasons and deadlines'),
     pair('문의 담당자·직원 공유 범위·공식 이미지 이용 권리', 'Support contact, staff sharing scope and rights to use official images'),
   ];
+  const clockKo = { file:'clock-ko.png', width:3892, height:2250, panes:[[0,28.7],[35.65,28.7],[71.3,28.7]] };
   const images = {
     'signup-ko': { file:'signup-ko.png', width:2566, height:2250, panes:[[0,1118/2566*100],[59.1,6.4,79.4,8]] },
+    'signup-en': { file:'signup-en.png', width:2566, height:2250, panes:[[0,1118/2566*100],[1651/2566*100,195/2566*100,1799/2250*100,169/2250*100]] },
+    'join-en': { file:'join-en.png', width:309, height:609, panes:[[0,100]] },
     'join-ko': { file:'join-ko.png', width:309, height:609, panes:[[0,100]] },
-    'clock-ko': { file: 'clock-ko.png', width: 3892, height: 2250, panes: [[0,28.7],[35.65,28.7],[71.3,28.7]] },
+    'edit-attendance-ko': { file:'edit-attendance-ko.png', width:2566, height:2250, panes:[[0,1118/2566*100,0,840/2250*100]] },
+    'edit-attendance-en': { file:'edit-attendance-en.png', width:2566, height:2250, panes:[[0,1118/2566*100,0,840/2250*100]] },
+    'clock-ko': clockKo,
+    'clock-area-ko': { ...clockKo, panes:[clockKo.panes[1]] },
+    'clock-area-en': { file:'clock-area-en.png', width:4012, height:2250, panes:[[1414/4012*100,1118/4012*100]] },
     'clock-en': { file: 'clock-en.png', width: 3953, height: 2250, panes: [[0,27.7],[35.8,28.2],[71.7,28.3]] },
   };
 
@@ -161,8 +185,8 @@
   copy.languageUz = five('우즈베크어로 가이드 읽기','Read this guide in Uzbek','用乌兹别克语阅读指南','Leer la guía en uzbeko','Qo‘llanmani o‘zbek tilida o‘qish');
   copy.languageMn = five('몽골어로 가이드 읽기','Read this guide in Mongolian','用蒙古语阅读指南','Leer la guía en mongol','Qo‘llanmani mo‘g‘ul tilida o‘qish');
   source.signup = {slug:'signUp',title:five('회원가입','Sign up','注册账号','Crear una cuenta','Ro‘yxatdan o‘tish')};
-  copy.imageSignupKo = {"ko": "한국어 공식 모바일 시작 화면입니다. 앱 버전에 따라 버튼 이름이 다를 수 있습니다.", "en": "Official Korean mobile start screen. Button labels may vary by app version.", "zh": "韩语官方手机开始页面。按钮名称可能因应用版本而异。", "es": "Pantalla móvil oficial en coreano. Los nombres pueden variar según la versión.", "uz": "Koreyscha rasmiy mobil boshlang‘ich oyna. Tugma nomlari versiyaga qarab farq qilishi mumkin.", "mn": "Албан ёсны солонгос утасны эхлэх дэлгэц. Товчны нэр аппын хувилбараас хамаарч өөр байж болно."};
-  copy.imageJoinKo = {"ko": "직원 시작 가이드의 한국어 공식 모바일 이미지입니다. 이미지 속 회사·코드는 예시이며 PIPE의 실제 정보가 아닙니다.", "en": "Official Korean mobile image from the staff getting-started guide. Its company and code are examples, not PIPE data.", "zh": "员工开始指南中的韩语官方手机图片。公司和代码均为示例，并非 PIPE 实际信息。", "es": "Imagen móvil oficial en coreano de la guía de empleados. La empresa y el código son ejemplos, no datos de PIPE.", "uz": "Xodimlar qo‘llanmasidagi koreyscha rasmiy mobil rasm. Kompaniya va kod namuna, PIPE ma’lumoti emas.", "mn": "Ажилтны эхлэх гарын авлагын албан ёсны солонгос утасны зураг. Байгууллага, код нь жишээ бөгөөд PIPE-ийн бодит мэдээлэл биш."};
+  copy.imageSignup = {"ko": "한국어 공식 모바일 시작 화면입니다. 앱 버전에 따라 버튼 이름이 다를 수 있습니다.", "en": "Official English mobile start screen. Button labels may vary by app version.", "zh": "英语官方手机开始页面。按钮名称可能因应用版本而异。", "es": "Pantalla móvil oficial en inglés. Los nombres pueden variar según la versión.", "uz": "Inglizcha rasmiy mobil boshlang‘ich oyna. Tugma nomlari versiyaga qarab farq qilishi mumkin.", "mn": "Албан ёсны англи утасны эхлэх дэлгэц. Товчны нэр аппын хувилбараас хамаарч өөр байж болно."};
+  copy.imageJoin = {"ko": "직원 시작 가이드의 한국어 공식 모바일 이미지입니다. 이미지 속 회사·코드는 예시이며 PIPE의 실제 정보가 아닙니다.", "en": "Official English mobile image from the staff getting-started guide. Its company and code are examples, not PIPE data.", "zh": "员工开始指南中的英语官方手机图片。公司和代码均为示例，并非 PIPE 实际信息。", "es": "Imagen móvil oficial en inglés de la guía de empleados. La empresa y el código son ejemplos, no datos de PIPE.", "uz": "Xodimlar qo‘llanmasidagi inglizcha rasmiy mobil rasm. Kompaniya va kod namuna, PIPE ma’lumoti emas.", "mn": "Ажилтны эхлэх гарын авлагын албан ёсны англи утасны зураг. Байгууллага, код нь жишээ бөгөөд PIPE-ийн бодит мэдээлэл биш."};
   source.staff = {"slug": "gettingStartedGuideForStaff", "title": {"ko": "직원 시작 가이드", "en": "Staff getting-started guide", "zh": "员工开始指南", "es": "Guía de inicio para empleados", "uz": "Xodimlar uchun boshlang‘ich qo‘llanma", "mn": "Ажилтны эхлэх гарын авлага"}};
   flows.signup = {
   "name": {
@@ -224,10 +248,9 @@
         "mn": "Эдгээр алхам нь утасны апп дээр Google бүртгэл холбож бүртгүүлэхийг харуулна. Бодит бүртгэлээ Shiftee апп дээр хийгээрэй."
       },
       "image": "signup",
-      "forceKo": true,
       "pane": 0,
       "spot": {
-        "ko": [
+        "shared": [
           8,
           78,
           84,
@@ -242,7 +265,7 @@
         "uz": "Shiftee rasmiy mobil boshlang‘ich oynasidagi Hisob yaratish tugmasi",
         "mn": "Shiftee-ийн албан ёсны утасны эхлэх дэлгэцийн бүртгэл үүсгэх товч"
       },
-      "imageNote": "imageSignupKo",
+      "imageNote": "imageSignup",
       "src": "signup"
     },
     {
@@ -279,11 +302,10 @@
         "mn": "(name).pipecompany@gmail.com Google бүртгэлийг ашиглаж, дараа Shiftee-д нэвтрэхдээ мөн тэр бүртгэлээ хэрэглээрэй."
       },
       "image": "signup",
-      "forceKo": true,
       "pane": 1,
       "crop": "google",
       "spot": {
-        "ko": [
+        "shared": [
           5,
           6,
           90,
@@ -335,11 +357,10 @@
         "mn": "Зураг нь Google сонгох жишээ бөгөөд бүртгэл амжилттай дууссан дэлгэц биш. Нэвтэрсний дараа дараагийн алхмаар PIPE-д нэгдээрэй."
       },
       "image": "signup",
-      "forceKo": true,
       "pane": 1,
       "crop": "google",
       "spot": {
-        "ko": [
+        "shared": [
           5,
           6,
           90,
@@ -391,10 +412,9 @@
         "mn": "Албан ёсны зураг нь хуучин 6 оронтой кодын дэлгэц. Бодитоор авсан 12 оронтой кодоо ашиглаарай. Хуучин 6 оронтой код бол аппын тусдаа сонголтоор оруулна. Асуулт гарвал дээрх CK Park-тай холбогдоорой."
       },
       "image": "join",
-      "forceKo": true,
       "pane": 0,
       "spot": {
-        "ko": [
+        "shared": [
           22,
           52,
           58,
@@ -409,7 +429,7 @@
         "uz": "Shiftee xodimlar boshlang‘ich qo‘llanmasidagi rasmiy mobil kompaniyaga qo‘shilish oynasi",
         "mn": "Shiftee ажилтны эхлэх гарын авлагын албан ёсны утасны байгууллагад нэгдэх дэлгэц"
       },
-      "imageNote": "imageJoinKo",
+      "imageNote": "imageJoin",
       "src": "staff"
     }
   ]
@@ -430,6 +450,8 @@
   addTranslations({copy,source,flows,correctionSteps,issues,ready,policies});
 
   const state = { language: 'ko', flow: 'signup', steps: { signup: 0, 'clock-in': 0, 'clock-out': 0, correction: 0 }, issue: 'gps', requestKind: 'create' };
+  // The shared correction link opens the edit example; in-guide selection remains independent.
+  if (window.location.hash === '#correction/1') state.requestKind = 'edit';
   const $ = id => document.getElementById(id);
   const local = value => value[state.language];
   const t = key => local(copy[key]);
@@ -483,10 +505,10 @@
     const hideCaption = step.hideImageCaption === true;
     document.querySelector('#screen-figure .sample-label').hidden = hideCaption;
     $('image-note').hidden = hideCaption;
-    const isCorrection = !step.image;
-    $('screen-figure').hidden = isCorrection;
-    $('request-diagram').hidden = !isCorrection;
-    if (isCorrection) {
+    const showDiagram = !step.image;
+    $('screen-figure').hidden = showDiagram;
+    $('request-diagram').hidden = !showDiagram;
+    if (showDiagram) {
       $('request-timeline').replaceChildren(...currentSteps().map((s, index) => {
         const li = element('li', local(s.chip));
         if (index === currentIndex()) li.setAttribute('aria-current', 'step');
@@ -494,7 +516,7 @@
       }));
       return;
     }
-    const imageLanguage = step.forceKo || state.language === 'ko' ? 'ko' : 'en';
+    const imageLanguage = state.language === 'ko' ? 'ko' : 'en';
     const info = images[`${step.image}-${imageLanguage}`];
     const [left, width, top = 0, height = 100] = info.panes[step.pane];
     const frame = $('screen-window');
@@ -508,10 +530,10 @@
     // lang applies to the accessible alt text, not text baked into the pixels.
     img.lang = state.language === 'zh' ? 'zh-Hans' : state.language;
     if (img.getAttribute('src') !== `assets/${info.file}`) img.src = `assets/${info.file}`;
-    const [x,y,w,h] = step.spot[imageLanguage];
+    const [x,y,w,h] = step.spot[imageLanguage] ?? step.spot.shared;
     Object.assign($('spotlight').style, { left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%` });
     $('spot-number').textContent = String(currentIndex() + 1);
-    const notes = hideCaption ? [] : [t(step.imageNote || (step.forceKo ? 'imageKoFallback' : imageLanguage === 'ko' ? 'imageKo' : 'imageEn'))];
+    const notes = hideCaption ? [] : [t(step.imageNote || (imageLanguage === 'ko' ? 'imageKo' : 'imageEn'))];
     if (state.flow === 'clock-out') notes.push(t('beforeOut'));
     $('image-note').textContent = notes.join(' ');
     $('full-image').href = `assets/${info.file}`;
@@ -545,7 +567,7 @@
     $('next').textContent = t(index === steps.length-1 ? 'lastStep' : 'next');
     $('completion-note').hidden = index !== steps.length-1;
     if (state.flow === 'signup') $('completion-note').textContent = local(step.note);
-    sourceLink($('step-source'), step.src, state.language === 'en' && step.src === 'clock' && !step.forceKo ? 'en' : 'ko');
+    sourceLink($('step-source'), step.src, state.language !== 'ko' && ['clock', 'signup', 'staff', 'edit'].includes(step.src) ? 'en' : 'ko');
     renderImage(step);
   }
   function renderIssue() {

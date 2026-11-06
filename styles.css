@@ -36,3 +36,4 @@ main{max-width:1240px;margin:auto;padding:0 32px}.intro{padding:52px 0 36px;max-
 
 /* Focus only the Google choice without modifying the official source bitmap. */
 .screen-window[data-crop="google"]{width:128px;box-shadow:none;border:0;border-radius:10px}
+.screen-window[data-crop="edit-attendance"]{width:min(100%,300px)}
