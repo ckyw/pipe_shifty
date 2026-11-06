@@ -58,18 +58,21 @@ const errors = [], external = [], consoleErrors = [];
           assert.doesNotMatch(await page.locator('body').innerText(),/\bQR\b/i);
           if (flow !== 'correction') {
             await page.waitForFunction(() => { const image = document.getElementById('app-screen'); return image.complete && image.naturalWidth > 0; });
+            const imageLanguage=language==='ko'?'ko':'en';
+            const expectedImage=flow==='signup' ? `${index<3?'signup':'join'}-${imageLanguage}.png`
+              : flow==='clock-in'&&index===1&&imageLanguage==='en' ? 'clock-area-en.png' : `clock-${imageLanguage}.png`;
+            assert.equal(await page.locator('#app-screen').getAttribute('src'),`assets/${expectedImage}`);
+            assert.equal(await page.locator('#full-image').getAttribute('href'),`assets/${expectedImage}`);
             assert.equal(await page.locator('#app-screen').getAttribute('lang'), language === 'zh' ? 'zh-Hans' : language);
             const frame = await page.locator('#screen-window').boundingBox();
             const spot = await page.locator('#spotlight').boundingBox();
             assert.ok(spot.x >= frame.x && spot.y >= frame.y && spot.x + spot.width <= frame.x + frame.width + 1 && spot.y + spot.height <= frame.y + frame.height + 1);
             if (language === 'en' && flow === 'clock-in' && index === 1) {
-              assert.match(await page.locator('#app-screen').getAttribute('src'), /clock-ko/);
-              assert.match(await page.locator('#image-note').innerText(), /Korean screenshot/);
-              assert.match(await page.locator('#app-screen').getAttribute('alt'), /Korean timeclock/);
+              assert.match(await page.locator('#image-note').innerText(), /English screenshot/);
+              assert.match(await page.locator('#app-screen').getAttribute('alt'), /Timeclock-area selection/);
             }
             if (flow === 'signup') {
               assert.match(await page.locator('#step-source').getAttribute('href'),index < 3 ? /signUp$/ : /gettingStartedGuideForStaff$/);
-              assert.match(await page.locator('#app-screen').getAttribute('src'),index < 3 ? /signup-ko\.png$/ : /join-ko\.png$/);
               assert.equal(await page.locator('#screen-figure').isVisible(),true);
               assert.equal(await page.locator('#request-diagram').isVisible(),false);
               if(index===1||index===2)assert.equal(await page.locator('#screen-window').getAttribute('data-crop'),'google');
@@ -219,13 +222,52 @@ const errors = [], external = [], consoleErrors = [];
         assert.equal(await page.locator('#progress').getAttribute('aria-valuenow'),String(index+1));
         assert.ok((await page.locator('#step-description').innerText()).length>10);
         if (language==='en') assert.equal(/[가-힣]/.test(await page.locator('#step-description').innerText()),false);
+        assert.equal(await page.locator('#screen-figure').isVisible(),index===1);
+        assert.equal(await page.locator('#request-diagram').isVisible(),index!==1);
+        if(index===1){
+          await page.waitForFunction(() => document.getElementById('app-screen').naturalWidth === 2566);
+          const editImage=`assets/edit-attendance-${language==='ko'?'ko':'en'}.png`;
+          assert.equal(await page.locator('#app-screen').getAttribute('src'),editImage);
+          assert.equal(await page.locator('#full-image').getAttribute('href'),editImage);
+          assert.equal(await page.locator('#app-screen').getAttribute('lang'),language==='zh'?'zh-Hans':language);
+          assert.ok((await page.locator('#app-screen').getAttribute('alt')).trim());
+          assert.ok((await page.locator('#image-note').innerText()).trim());
+        }
         const hash=new URL(page.url()).hash;
         await page.locator('[data-request="edit"]').click();
         assert.equal(new URL(page.url()).hash,hash);
         if(index<2) await page.locator('#next').click();
       }
-      record(`${language} edit-request variant`,'All three edit steps, correct source and repeated type selection');
+      record(`${language} edit-request variant`,'Image and localized description only on edit step 2; correct source and repeated type selection');
     }
+
+    const correctionLink=await context.newPage();
+    await correctionLink.goto(`${base}#correction/1`);
+    assert.equal(await correctionLink.locator('[data-request="edit"]').getAttribute('aria-pressed'),'true');
+    await correctionLink.waitForFunction(() => document.getElementById('app-screen').naturalWidth === 2566);
+    for(const width of [320,390,768,1440]){
+      await correctionLink.setViewportSize({width,height:844});
+      assert.ok(await correctionLink.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+      const frame=await correctionLink.locator('#screen-window').boundingBox();
+      const stage=await correctionLink.locator('.screen-stage').boundingBox();
+      assert.ok(frame.x>=stage.x&&frame.x+frame.width<=stage.x+stage.width+1);
+      if(width===390||width===1440)await correctionLink.locator('.lesson').screenshot({path:path.join(out,`correction-edit-${width}.png`)});
+    }
+    await correctionLink.setViewportSize({width:390,height:844});
+    await correctionLink.locator('#language-select').selectOption('en');
+    await correctionLink.waitForFunction(()=>{const n=document.getElementById('app-screen');return n.complete&&n.currentSrc.endsWith('/edit-attendance-en.png')&&n.naturalWidth===2566;});
+    assert.equal(new URL(correctionLink.url()).hash,'#correction/1');
+    assert.match(await correctionLink.locator('#image-note').innerText(),/in English/);
+    assert.match(await correctionLink.locator('#step-source').getAttribute('href'),/\/en\/help\/article\/editAttendanceRequest$/);
+    await correctionLink.locator('.lesson').screenshot({path:path.join(out,'correction-edit-390-en.png')});
+    await correctionLink.locator('[data-request="create"]').click();
+    assert.equal(new URL(correctionLink.url()).hash,'#correction/1');
+    assert.equal(await correctionLink.locator('#screen-figure').isVisible(),false);
+    assert.equal(await correctionLink.locator('#request-diagram').isVisible(),true);
+    await correctionLink.locator('[data-request="edit"]').click();
+    assert.equal(await correctionLink.locator('#screen-figure').isVisible(),true);
+    await correctionLink.close();
+    record('Correction deep link and responsive screenshot','Direct link opens edit step 2; fits four widths; create still shows its diagram');
 
     for (const width of [320,390,768,1440]) {
       await page.setViewportSize({width,height:844});
@@ -301,6 +343,13 @@ const errors = [], external = [], consoleErrors = [];
       }
     }
     record('Signup image failure in six languages','All four mobile signup steps preserve text and official source when images fail');
+    await failedPage.goto(`${base}#correction/1`);
+    await failedPage.locator('[data-request="edit"]').click();
+    await failedPage.waitForFunction(()=>document.getElementById('screen-window').classList.contains('failed'));
+    assert.match(await failedPage.locator('#step-source').getAttribute('href'),/editAttendanceRequest$/);
+    assert.ok((await failedPage.locator('#step-description').innerText()).length>10);
+    assert.equal(await failedPage.locator('#next').isEnabled(),true);
+    record('Correction image failure','Edit instructions, official source and navigation remain usable');
     await failedPage.close();
 
     const qrRequests=await page.evaluate(()=>performance.getEntriesByType('resource').filter(r=>/qr-(ko|en)\.png/.test(r.name)).map(r=>r.name));

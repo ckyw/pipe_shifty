@@ -47,14 +47,29 @@ for(const language of ['ko','en','zh','es','uz','mn']){
  assert.doesNotMatch(text,/이메일|비밀번호|\b(?:PC|SSO)\b|네이버|애플|스팸|email|password|computer|desktop|naver|apple|correo|contraseña|ordenador|kompyuter|parol|邮箱|密码|电脑|邮件|имэйл|нууц үг|компьютер/i,'Google mobile signup only');
 }
 for(const [index,step]of ctx.data.flows.signup.steps.entries()){
- assert.equal(step.forceKo,true);assert.equal(step.image,index===3?'join':'signup');assert.ok(step.alt.en);
+ assert.equal(step.image,index===3?'join':'signup');assert.ok(step.alt.en);
  assert.equal(step.hideImageCaption===true,index===1||index===2);
  if(index===1||index===2)assert.equal(step.imageNote,undefined);else assert.ok(step.imageNote);
- const info=ctx.data.images[step.image+'-ko'];assert.ok(fs.existsSync(path.join(root,'assets',info.file)));
+}
+const picturedSteps=[...Object.values(ctx.data.flows).flatMap(flow=>flow.steps),...ctx.data.correctionSteps.edit].filter(step=>step.image);
+for(const step of picturedSteps){
+ assert.equal(step.forceKo,undefined);
+ const [ko,en]=['ko','en'].map(language=>{
+  const info=ctx.data.images[step.image+'-'+language];
+  assert.ok(info.panes[step.pane]);
+  assert.ok(info.file.endsWith('-'+language+'.png'));
+  assert.ok(fs.existsSync(path.join(root,'assets',info.file)));
+  assert.equal((step.spot[language]??step.spot.shared).length,4);
+  return info;
+ });
+ assert.notEqual(ko.file,en.file);
 }
 const googleCrop=ctx.data.images['signup-ko'].panes[1];
 assert.ok(googleCrop[0]<=1523/2566*100&&googleCrop[0]+googleCrop[1]<1717/2566*100,'Crop includes Google and ends before other account buttons');
 assert.ok(googleCrop[2]>1750/2250*100&&googleCrop[2]+googleCrop[3]>1950/2250*100,'Crop excludes email button and includes Google button');
+const [enX,enWidth,enY,enHeight]=ctx.data.images['signup-en'].panes[1];
+assert.ok(enX<=1657/2566*100 && enX+enWidth>=1839/2566*100 && enX+enWidth<1881/2566*100,'English crop shows Google and excludes Apple');
+assert.ok(enY>1751/2250*100 && enY<=1805/2250*100 && enY+enHeight>=1961/2250*100,'English crop shows Google without email or the separator');
 
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert.match(html,/<label for="language-select"[^>]*data-i18n="languageLabel"/);

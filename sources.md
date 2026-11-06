@@ -75,3 +75,20 @@
 - join-ko.png: `ea990cc1978097a5b997c2322e99e2f48d8851bf5ea01c856bfd34e690288f8f`
 
 직원 시작 가이드의 합류 화면은 이전 6자리 코드 예시입니다. 최신 [직장 합류하기](https://shiftee.io/ko/help/article/joinCompany)에서는 12자리 입력과 이전 6자리 별도 경로를 함께 안내하므로, 본문은 최신 절차를 유지하고 원본 이미지의 연식을 설명합니다. 원본 이미지의 회사·코드는 PIPE 운영 정보가 아닙니다.
+
+## 2026-11-06 출퇴근기록 수정 요청 이미지
+
+[시프티 출퇴근기록 수정 요청 공식 도움말](https://shiftee.io/ko/help/article/editAttendanceRequest)의 ‘모바일 - ② 요청 탭에서 진행하기’ STEP 4–5 이미지를 확인했습니다. [원본 `mob_editAttendanceRequest2.png`](https://shiftee.s3.ap-northeast-2.amazonaws.com/website/contents/helpArticles/ko/request/editAttendanceRequest/mob_editAttendanceRequest2.png) (2566×2250)를 `assets/edit-attendance-ko.png`에 그대로 저장했습니다. SHA-256: `2be4bc72d7d19a5e4eacc99551c9eb27129d6ce66b1c9f95abf8a6b155629e3f`.
+
+`#correction/1`의 수정 유형에서 왼쪽 화면 상단(x=0–1118, y=0–840)의 날짜와 출퇴근 시각을 표시합니다. 원본 전체 이미지에서 오른쪽의 사유 입력과 보내기 화면을 볼 수 있습니다. 날짜·시각은 공식 도움말의 예시이며 PIPE의 실제 기록이 아닙니다. 기존 생성 유형 및 다른 단계의 절차 도표는 유지합니다.
+
+## 2026-11-06 영어 앱 화면 대응
+
+한국어 가이드는 기존 한국어 이미지를 표시합니다. 나머지 5개 언어는 영어 원본을 표시하고, 앞서 기록한 출근 장소의 한국어 대체 방식은 종료합니다. 아래 파일들은 시프티가 영문 도움말에서 제공한 PNG와 바이트가 일치합니다.
+
+| 로컬 파일 | 도움말 | 영어 원본 | 크기·표시 범위 |
+|---|---|---|---|
+| `signup-en.png` | [Sign Up](https://shiftee.io/en/help/article/signUp) | [mob_signUp1.png](https://shiftee.s3.ap-northeast-2.amazonaws.com/website/contents/helpArticles/en/getting_started/signUp/mob_signUp1.png) | 2566×2250. 왼쪽 시작 화면 및 Google 버튼(x=1651–1846, y=1799–1968) |
+| `join-en.png` | [Getting Started Guide for Staff](https://shiftee.io/en/help/article/gettingStartedGuideForStaff) | [mob_joinCompany.png](https://shiftee.s3.ap-northeast-2.amazonaws.com/website/contents/helpArticles/en/getting_started/gettingStartedGuideForStaff/mob_joinCompany.png) | 309×609. 모바일 합류 전체 화면 |
+| `edit-attendance-en.png` | [Edit Attendance Request](https://shiftee.io/en/help/article/editAttendanceRequest) | [mob_editAttendanceRequest2.png](https://shiftee.s3.ap-northeast-2.amazonaws.com/website/contents/helpArticles/en/request/editAttendanceRequest/mob_editAttendanceRequest2.png) | 2566×2250. 왼쪽의 날짜·출퇴근 시각 영역 |
+| `clock-area-en.png` | [Clock In and Out](https://shiftee.io/en/help/article/clockInOut) | [mob_clockInToExpectedShift1.png](https://shiftee.s3.ap-northeast-2.amazonaws.com/website/contents/helpArticles/en/attendance/clockInOut/mob_clockInToExpectedShift1.png) | 4012×2250. 가운데 Clock In 지도와 장소 목록(x=1414–2532). 표시된 일정과 장소는 시프티의 예시 |
